@@ -5,22 +5,36 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    [Header("Sub Cameras")]
-    public GameObject[] SubCameras;
+    [Header("Room Cameras")]
+    public GameObject[] RoomCameras;
+    public int currentCamIndex;
+
+    [Header("Camera Room Cam")]
+    public GameObject MainRoomCam;
 
     private void Start()
     {
-        SubCameras[0].SetActive(true);
+        MainRoomCam.SetActive(true);
+        currentCamIndex = 0;
     }
 
     public void activateCamera(int camIndex)
     {
+        currentCamIndex = camIndex;
         disableAllCameras();
-        SubCameras[camIndex].SetActive(true);
+        MainRoomCam.SetActive(false);
+        RoomCameras[camIndex].SetActive(true);
     }
     void disableAllCameras()
     {
-        for(int i = 0; i< SubCameras.Length; i++) SubCameras[i].SetActive(false);
+        for(int i = 0; i< RoomCameras.Length; i++) RoomCameras[i].SetActive(false);
+    }
+
+    public void GoBackToMain()
+    {
+        disableAllCameras();
+        MainRoomCam.SetActive(true);
+        currentCamIndex = 0;
     }
 
     
