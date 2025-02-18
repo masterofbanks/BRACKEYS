@@ -6,8 +6,10 @@ using UnityEngine.InputSystem;
 public class PlayeyMovement : MonoBehaviour
 {
     public PIAs player_input_actions;
+    public GameObject miniGameObject;
 
     private InputAction move;
+    private InputAction interact;
 
     private Rigidbody2D rb;
 
@@ -38,10 +40,42 @@ public class PlayeyMovement : MonoBehaviour
         rb.velocity = rawDirectionInputs * moveSpeed;
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Minigame"))
+        {
+            Debug.Log("Witih Minigame circle");
+            miniGameObject = collision.gameObject;
+
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Minigame"))
+        {
+            Debug.Log("Witih Minigame circle");
+            miniGameObject = null;
+
+        }
+    }
+
+    private void Interact(InputAction.CallbackContext context)
+    {
+        if(miniGameObject != null)
+        {
+            miniGameObject.GetComponent<MinigameLocatorBehavior>().ChangeCamsToMinigame();
+        }
+    }
+
     private void OnEnable()
     {
         move = player_input_actions.Player.Move;
+        interact = player_input_actions.Player.Interact;
         move.Enable();
+        interact.Enable();
+
+        interact.performed += Interact;
     }
 
     private void OnDisable()

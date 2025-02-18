@@ -26,7 +26,7 @@ public class CameraManager : MonoBehaviour
         RoomCameras[camIndex].SetActive(true);
         RoomCameras[camIndex].GetComponent<RoomCameraFields>().player.GetComponent<PlayeyMovement>().enabled = true;
     }
-    void disableAllCameras()
+    public void disableAllCameras()
     {
         for (int i = 0; i < RoomCameras.Length; i++)
         {
