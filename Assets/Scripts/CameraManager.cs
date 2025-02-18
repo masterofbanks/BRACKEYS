@@ -12,6 +12,9 @@ public class CameraManager : MonoBehaviour
     [Header("Camera Room Cam")]
     public GameObject MainRoomCam;
 
+    [Header("Transition Manager")]
+    public CameraTransitionManager cameraTransitionManager;
+
     private void Start()
     {
         MainRoomCam.SetActive(true);
@@ -26,6 +29,7 @@ public class CameraManager : MonoBehaviour
         RoomCameras[camIndex].SetActive(true);
         RoomCameras[camIndex].GetComponent<RoomCameraFields>().player.GetComponent<PlayeyMovement>().enabled = true;
     }
+
     void disableAllCameras()
     {
         for (int i = 0; i < RoomCameras.Length; i++)
@@ -35,6 +39,7 @@ public class CameraManager : MonoBehaviour
             RoomCameras[i].GetComponent<RoomCameraFields>().player.GetComponent<PlayeyMovement>().enabled = false;
         }
     }
+
     public void GoBackToMain()
     {
         disableAllCameras();
@@ -42,5 +47,12 @@ public class CameraManager : MonoBehaviour
         currentCamIndex = 0;
     }
 
-    
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.KeypadEnter))
+        {
+            // Trigger the transition
+            cameraTransitionManager.ToggleTransition();
+        }
+    }
 }

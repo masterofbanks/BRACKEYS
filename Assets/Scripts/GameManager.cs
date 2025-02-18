@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour
 {
     public GameObject CameraManager;
     public GameObject StaticEffectPrefab;
-
     private GameObject staticEffectInstance;
     private VideoPlayer staticVideoPlayer;
 
