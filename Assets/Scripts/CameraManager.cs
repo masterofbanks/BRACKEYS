@@ -24,12 +24,17 @@ public class CameraManager : MonoBehaviour
         disableAllCameras();
         MainRoomCam.SetActive(false);
         RoomCameras[camIndex].SetActive(true);
+        RoomCameras[camIndex].GetComponent<RoomCameraFields>().player.GetComponent<PlayeyMovement>().enabled = true;
     }
     void disableAllCameras()
     {
-        for(int i = 0; i< RoomCameras.Length; i++) RoomCameras[i].SetActive(false);
+        for (int i = 0; i < RoomCameras.Length; i++)
+        {
+            RoomCameras[i].SetActive(false);
+            RoomCameras[i].GetComponent<RoomCameraFields>().player.GetComponent<Rigidbody2D>().velocity = Vector3.zero; 
+            RoomCameras[i].GetComponent<RoomCameraFields>().player.GetComponent<PlayeyMovement>().enabled = false;
+        }
     }
-
     public void GoBackToMain()
     {
         disableAllCameras();
