@@ -2316,7 +2316,7 @@ GameObject:
   - component: {fileID: 1384088161}
   - component: {fileID: 1384088160}
   m_Layer: 5
-  m_Name: BottomLeft (1)
+  m_Name: MinigameRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3593,7 +3593,7 @@ GameObject:
   - component: {fileID: 2048038491}
   - component: {fileID: 2048038490}
   m_Layer: 0
-  m_Name: Room Cam (6)
+  m_Name: MiniGameCam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
