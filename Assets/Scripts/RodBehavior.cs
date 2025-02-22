@@ -81,8 +81,7 @@ public class RodBehavior : MonoBehaviour
         if (collision.gameObject.CompareTag("RodGoal") && horizontal_rod)
         {
             Debug.Log("Goal Reached");
-            GameObject.FindWithTag("CameraManager").GetComponent<CameraManager>().GoBackToMain();
-            GameObject.FindWithTag("GameController").GetComponent<GameManager>().inMinigame = false;
+            GetComponentInParent<RodGameManager>().CleanUp();
         }
     }
 

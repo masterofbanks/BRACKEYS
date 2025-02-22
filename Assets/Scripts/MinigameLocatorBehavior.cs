@@ -6,6 +6,7 @@ public class MinigameLocatorBehavior : MonoBehaviour
 {
 
     public GameObject miniGameRoom;
+    public string MiniGameName;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +22,16 @@ public class MinigameLocatorBehavior : MonoBehaviour
     public void ChangeCamsToMinigame()
     {
         GameObject.FindWithTag("CameraManager").GetComponent<CameraManager>().disableAllCameras();
-        miniGameRoom.GetComponent<MiniGameManagement>().cam.SetActive(true);
+        string name = MiniGameName;
+        switch (name)
+        {
+            case "Rod":
+                miniGameRoom.GetComponent<RodGameManager>().StartUp();
+                break;
+            default:
+                Debug.Log("Missing Game Name");
+                break;
+
+        }
     }
 }
