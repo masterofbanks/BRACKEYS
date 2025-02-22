@@ -129,7 +129,7 @@ public class DeskManager : MonoBehaviour
     {
         if (!GameObject.FindWithTag("CameraManager").GetComponent<CameraManager>().MainRoomCam.activeSelf)
         {
-            player.GetComponent<PlayerMovement>().enabled = true;
+           
             StartCoroutine(PlayAnimation(blackButton));
             takeControl.Disable();
             if (!cameraTransitionManager.isTransitioning)
@@ -137,11 +137,13 @@ public class DeskManager : MonoBehaviour
                 DisableCamSwitch();
                 if (inControl)
                 {
+                    player.GetComponent<PlayerMovement>().enabled = false;
                     inControl = false;
                     EnableCamSwitch();
                 }
                 else
                 {
+                    player.GetComponent<PlayerMovement>().enabled = true;
                     inControl = true;
                 }
                 cameraTransitionManager.ToggleTransition();
