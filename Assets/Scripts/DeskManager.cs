@@ -177,23 +177,30 @@ public class DeskManager : MonoBehaviour
                     StartCoroutine(PlayAnimation(q_button));
                     SwitchCamTo(4);  break;
                 case "black":
-                    StartCoroutine(PlayAnimation(blackButton));
-                    takeControl.Disable();
-                    if (!cameraTransitionManager.isTransitioning)
+                    if (!GameObject.FindWithTag("CameraManager").GetComponent<CameraManager>().MainRoomCam.activeSelf)
                     {
-                        DisableCamSwitch();
-                        if (inControl)
+                        StartCoroutine(PlayAnimation(blackButton));
+                        takeControl.Disable();
+                        if (!cameraTransitionManager.isTransitioning)
                         {
-                            inControl = false;
-                            EnableCamSwitch();
+                            DisableCamSwitch();
+                            if (inControl)
+                            {
+                                player.GetComponent<PlayerMovement>().enabled = false;
+                                inControl = false;
+                                EnableCamSwitch();
+                            }
+                            else
+                            {
+                                player.GetComponent<PlayerMovement>().enabled = true;
+                                inControl = true;
+                            }
+                            cameraTransitionManager.ToggleTransition();
                         }
-                        else
-                        {
-                            inControl = true;
-                        }
-                        cameraTransitionManager.ToggleTransition();
+                        takeControl.Enable();
                     }
-                    takeControl.Enable(); break;
+
+                     break;
                 default: Debug.Log("no button"); break;
             }
         }
