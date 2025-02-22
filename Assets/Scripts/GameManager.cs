@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public GameObject CameraManager;
     public GameObject StaticEffectPrefab;
+    public bool inMinigame;
     private GameObject staticEffectInstance;
     private VideoPlayer staticVideoPlayer;
 
@@ -27,7 +28,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         // This is not permanent, just to test moving screen
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && !inMinigame)
         {
             Debug.Log("space was pressed");
             // Get the number of cameras
@@ -57,7 +58,7 @@ public class GameManager : MonoBehaviour
             // Start coroutine to disable the static effect instance and switch camera after the video finishes playing
             StartCoroutine(DisableStaticEffectAndSwitchCamera(currentIndex));
         }
-        else if (Input.GetKeyDown(KeyCode.V))
+        else if (Input.GetKeyDown(KeyCode.V) && !inMinigame)
         {
             CameraManager.GetComponent<CameraManager>().GoBackToMain();
         }
