@@ -79,8 +79,8 @@ public class CameraManager : MonoBehaviour
         disableAllCameras();
         MainRoomCam.SetActive(false);
         RoomCameras[camIndex].SetActive(true);
-        if(!RoomCameras[camIndex].GetComponent<RoomCameraFields>().isMain)
-            RoomCameras[camIndex].GetComponent<RoomCameraFields>().player.GetComponent<PlayerMovement>().enabled = true;
+        if (!RoomCameras[camIndex].GetComponent<RoomCameraFields>().isMain)
+            GameObject.FindWithTag("Desk").GetComponent<DeskManager>().player = RoomCameras[camIndex].GetComponent<RoomCameraFields>().player;
     }
 
     

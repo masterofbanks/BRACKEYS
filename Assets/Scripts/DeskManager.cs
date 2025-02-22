@@ -35,6 +35,9 @@ public class DeskManager : MonoBehaviour
 
     [Header("Desk Layer")]
     public LayerMask deskLayer;
+
+    [Header("Player To Control")]
+    public GameObject player;
     void Start()
     {
         cam1 = playerInputActions.Desk.Cam1;
@@ -126,6 +129,7 @@ public class DeskManager : MonoBehaviour
     {
         if (!GameObject.FindWithTag("CameraManager").GetComponent<CameraManager>().MainRoomCam.activeSelf)
         {
+            player.GetComponent<PlayerMovement>().enabled = true;
             StartCoroutine(PlayAnimation(blackButton));
             takeControl.Disable();
             if (!cameraTransitionManager.isTransitioning)

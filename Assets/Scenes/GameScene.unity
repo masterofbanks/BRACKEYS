@@ -2732,6 +2732,7 @@ MonoBehaviour:
   deskLayer:
     serializedVersion: 2
     m_Bits: 1
+  player: {fileID: 0}
 --- !u!1 &1234490671
 GameObject:
   m_ObjectHideFlags: 0
@@ -4947,6 +4948,10 @@ PrefabInstance:
       propertyPath: miniGameCamera
       value: 
       objectReference: {fileID: 918051811}
+    - target: {fileID: 6848714592134850949, guid: 35f5f7892e08e2b4ca76d01a4f310240, type: 3}
+      propertyPath: minigameManager
+      value: 
+      objectReference: {fileID: 241586333}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
