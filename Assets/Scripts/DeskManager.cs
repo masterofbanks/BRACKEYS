@@ -127,14 +127,14 @@ public class DeskManager : MonoBehaviour
                 case "green":
                     StartCoroutine(PlayAnimation(greenButton));
                     SwitchCamTo(0); break;
-                case "blue":
-                    StartCoroutine(PlayAnimation(blueButton));
-                    SwitchCamTo(1); break;
                 case "red":
                     StartCoroutine(PlayAnimation(redButton));
-                    SwitchCamTo(2); break;
+                    SwitchCamTo(1); break;
                 case "yellow":
                     StartCoroutine(PlayAnimation(yellowButton));
+                    SwitchCamTo(2); break;
+                case "blue":
+                    StartCoroutine(PlayAnimation(blueButton));
                     SwitchCamTo(3); break;
                 case "black":
                     StartCoroutine(PlayAnimation(blackButton));
