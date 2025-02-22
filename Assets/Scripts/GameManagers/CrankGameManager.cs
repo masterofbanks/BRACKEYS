@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class CrankGameManager : MiniGameManager
 {
+    [Header("Game Settings")]
+    public int spinGoal = 6;
+
+    [Header("Crank Collisions")]
+    public GameObject[] gameObjects;
+
+    [Header("Wheel Prefab")]
+    public GameObject wheel;
+
     // Start is called before the first frame update
     void Start()
     {
