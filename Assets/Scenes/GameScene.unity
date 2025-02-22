@@ -369,7 +369,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 241586331}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 018762e0442871a46afe7198d66c166a, type: 3}
   m_Name: 
@@ -1789,6 +1789,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 847195483}
+  - component: {fileID: 847195484}
   m_Layer: 0
   m_Name: Crank
   m_TagString: Untagged
@@ -1812,6 +1813,19 @@ Transform:
   - {fileID: 1112691855}
   m_Father: {fileID: 877488111}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &847195484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847195482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e189735fa6d9b845bc943a8074c0f05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 640797077}
 --- !u!1 &877488110
 GameObject:
   m_ObjectHideFlags: 0
@@ -2525,9 +2539,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6848714592134850949, guid: 35f5f7892e08e2b4ca76d01a4f310240, type: 3}
+      propertyPath: miniGameRoom
+      value: 
+      objectReference: {fileID: 1112691853}
+    - target: {fileID: 6848714592134850949, guid: 35f5f7892e08e2b4ca76d01a4f310240, type: 3}
       propertyPath: miniGameCamera
       value: 
       objectReference: {fileID: 640797077}
+    - target: {fileID: 6848714592134850949, guid: 35f5f7892e08e2b4ca76d01a4f310240, type: 3}
+      propertyPath: minigameManager
+      value: 
+      objectReference: {fileID: 847195484}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

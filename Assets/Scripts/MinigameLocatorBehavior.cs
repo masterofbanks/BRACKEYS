@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class MinigameLocatorBehavior : MonoBehaviour
 {
-
-    public GameObject miniGameRoom;
-    public string MiniGameName;
+    public MiniGameManager minigameManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,16 +20,7 @@ public class MinigameLocatorBehavior : MonoBehaviour
     public void ChangeCamsToMinigame()
     {
         GameObject.FindWithTag("CameraManager").GetComponent<CameraManager>().disableAllCameras();
-        string name = MiniGameName;
-        switch (name)
-        {
-            case "Rod":
-                miniGameRoom.GetComponent<RodGameManager>().StartUp();
-                break;
-            default:
-                Debug.Log("Missing Game Name");
-                break;
-
-        }
+        minigameManager.cam.SetActive(true);
+        minigameManager.enabled = true;
     }
 }
