@@ -30,7 +30,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _Feather: 0.05
-    - _HoleRadius: 0.1
+    - _HoleRadius: 0.03
     m_Colors:
     - _HoleCenter: {r: 0.5, g: 0.5, b: 0, a: 0}
   m_BuildTextureStacks: []

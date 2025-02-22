@@ -37,9 +37,13 @@ Shader "Custom/SpotlightShader" {
             }
 
             fixed4 frag (v2f i) : SV_Target {
-                // Compute distance from the hole center (using UVs which should be normalized)
-                float dist = distance(i.uv, _HoleCenter.xy);
-                // Use smoothstep for a soft edge: fully transparent inside the radius, opaque outside
+                // Get the aspect ratio (screen width/height)
+                float aspect = _ScreenParams.x / _ScreenParams.y;
+                // Adjust the UV offset to account for the aspect ratio.
+                float2 uvOffset = i.uv - _HoleCenter.xy;
+                uvOffset.x *= aspect;
+                float dist = length(uvOffset);
+                // Create a smooth edge for the circle
                 float alpha = smoothstep(_HoleRadius, _HoleRadius + _Feather, dist);
                 return fixed4(0, 0, 0, alpha);
             }
