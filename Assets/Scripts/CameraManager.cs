@@ -5,23 +5,56 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    [Header("Sub Cameras")]
-    public GameObject[] SubCameras;
+    [Header("Room Cameras")]
+    public GameObject[] RoomCameras;
+    public int currentCamIndex;
+
+    [Header("Camera Room Cam")]
+    public GameObject MainRoomCam;
+
+    [Header("Transition Manager")]
+    public CameraTransitionManager cameraTransitionManager;
 
     private void Start()
     {
-        SubCameras[0].SetActive(true);
+        MainRoomCam.SetActive(true);
+        currentCamIndex = 0;
     }
 
     public void activateCamera(int camIndex)
     {
+        currentCamIndex = camIndex;
         disableAllCameras();
-        SubCameras[camIndex].SetActive(true);
-    }
-    void disableAllCameras()
-    {
-        for(int i = 0; i< SubCameras.Length; i++) SubCameras[i].SetActive(false);
+        MainRoomCam.SetActive(false);
+        RoomCameras[camIndex].SetActive(true);
+        RoomCameras[camIndex].GetComponent<RoomCameraFields>().player.GetComponent<PlayeyMovement>().enabled = true;
     }
 
     
+
+    public void disableAllCameras()
+    {
+        for (int i = 0; i < RoomCameras.Length; i++)
+        {
+            RoomCameras[i].SetActive(false);
+            RoomCameras[i].GetComponent<RoomCameraFields>().player.GetComponent<Rigidbody2D>().velocity = Vector3.zero; 
+            RoomCameras[i].GetComponent<RoomCameraFields>().player.GetComponent<PlayeyMovement>().enabled = false;
+        }
+    }
+
+    public void GoBackToMain()
+    {
+        disableAllCameras();
+        MainRoomCam.SetActive(true);
+        currentCamIndex = 0;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.KeypadEnter))
+        {
+            // Trigger the transition
+            cameraTransitionManager.ToggleTransition();
+        }
+    }
 }
