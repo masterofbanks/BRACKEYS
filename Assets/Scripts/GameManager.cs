@@ -60,7 +60,10 @@ public class GameManager : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.V) && !inMinigame)
         {
-            CameraManager.GetComponent<CameraManager>().GoBackToMain();
+            //CameraManager.GetComponent<CameraManager>().GoBackToMain();
+            staticEffectInstance.SetActive(true);
+            staticVideoPlayer.Play();
+            StartCoroutine(SwitchCameraToMain());
         }
     }
 
@@ -74,5 +77,16 @@ public class GameManager : MonoBehaviour
 
         // Activate the new cam via the index
         CameraManager.GetComponent<CameraManager>().activateCamera(newCamIndex);
+    }
+    private IEnumerator SwitchCameraToMain()
+    {
+        // Wait for the duration of the video
+        yield return new WaitForSeconds((float)staticVideoPlayer.clip.length);
+
+        // Disable the static effect instance
+        staticEffectInstance.SetActive(false);
+
+        // Activate the new cam via the index
+        CameraManager.GetComponent<CameraManager>().GoBackToMain();
     }
 }
