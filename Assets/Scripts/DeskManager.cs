@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class DeskManager : MonoBehaviour
 {
@@ -18,10 +19,13 @@ public class DeskManager : MonoBehaviour
     private InputAction cam3;
     private InputAction cam4;
     private InputAction takeControl;
+    private InputAction click;
 
     [Header("In Control Boolean")]
     public bool inControl = false;
 
+    [Header("Desk Layer")]
+    public LayerMask deskLayer;
     void Start()
     {
         cam1 = playerInputActions.Desk.Cam1;
@@ -29,15 +33,18 @@ public class DeskManager : MonoBehaviour
         cam3 = playerInputActions.Desk.Cam3;
         cam4 = playerInputActions.Desk.Cam4;
         takeControl = playerInputActions.Desk.TakeControl;
-        
+        click = playerInputActions.Desk.Click;
+
         EnableCamSwitch();
         takeControl.Enable();
+        click.Enable();
 
         cam1.performed += Cam1;
         cam2.performed += Cam2;
         cam3.performed += Cam3;
         cam4.performed += Cam4;
         takeControl.performed += TakeControl;
+        click.performed += Click;
 
     }
     private void Awake()
@@ -54,32 +61,51 @@ public class DeskManager : MonoBehaviour
     }
     private void Cam1(InputAction.CallbackContext context)
     {
-        cameraManager.GetComponent<CameraManager>().SwitchCamTo(0);
+        SwitchCamTo(0);
     }
     private void Cam2(InputAction.CallbackContext context)
     {
-        cameraManager.GetComponent<CameraManager>().SwitchCamTo(1);
+        SwitchCamTo(1);
     }
     private void Cam3(InputAction.CallbackContext context)
     {
-        cameraManager.GetComponent<CameraManager>().SwitchCamTo(2);
+        SwitchCamTo(2);
     }
     private void Cam4(InputAction.CallbackContext context)
     {
-        cameraManager.GetComponent<CameraManager>().SwitchCamTo(3);
+        SwitchCamTo(3);
+    }
+    private void SwitchCamTo(int cam)
+    {
+        DisableCamSwitch();
+        if(!cameraTransitionManager.isZoomedIn) cameraManager.GetComponent<CameraManager>().SwitchCamTo(cam);
+        EnableCamSwitch();
     }
     private void TakeControl(InputAction.CallbackContext context)
     {
-        if (inControl)
+        takeControl.Disable();
+        if (!cameraTransitionManager.isTransitioning)
         {
-            inControl = false;
-            EnableCamSwitch();
-        }
-        else
-        {
-            inControl = true;
             DisableCamSwitch();
+            if (inControl)
+            {
+                inControl = false;
+                EnableCamSwitch();
+            }
+            else
+            {
+                inControl = true;
+            }
+            cameraTransitionManager.ToggleTransition();
         }
-        cameraTransitionManager.ToggleTransition();
+        takeControl.Enable();
+
+    }
+    private void Click(InputAction.CallbackContext context)
+    {
+
+        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f));
+        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, deskLayer);
+
     }
 }

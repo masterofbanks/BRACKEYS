@@ -6,12 +6,12 @@ public class CameraTransitionManager : MonoBehaviour
 {
     public Camera mainCamera;
     public Transform targetTransform; // The transform of the UI Image or Sprite Renderer
-    public float transitionDuration = 1.0f; // Duration of the transition
+    public float transitionDuration = 0.5f; // Duration of the transition
     public CCTVRippleEffect cctvEffect;
     private Vector3 originalPosition;
     private float originalSize;
-    private bool isTransitioning = false; // Flag to track the transition state
-    private bool isZoomedIn = false; // Flag to track if the camera is zoomed in
+    public bool isTransitioning = false; // Flag to track the transition state
+    public bool isZoomedIn = false; // Flag to track if the camera is zoomed in
 
     void Start()
     {

@@ -75,7 +75,7 @@ public class CameraManager : MonoBehaviour
         disableAllCameras();
         MainRoomCam.SetActive(false);
         RoomCameras[camIndex].SetActive(true);
-        RoomCameras[camIndex].GetComponent<RoomCameraFields>().player.GetComponent<PlayeyMovement>().enabled = true;
+        RoomCameras[camIndex].GetComponent<RoomCameraFields>().player.GetComponent<PlayerMovement>().enabled = true;
     }
 
     
@@ -86,7 +86,7 @@ public class CameraManager : MonoBehaviour
         {
             RoomCameras[i].SetActive(false);
             RoomCameras[i].GetComponent<RoomCameraFields>().player.GetComponent<Rigidbody2D>().velocity = Vector3.zero; 
-            RoomCameras[i].GetComponent<RoomCameraFields>().player.GetComponent<PlayeyMovement>().enabled = false;
+            RoomCameras[i].GetComponent<RoomCameraFields>().player.GetComponent<PlayerMovement>().enabled = false;
         }
     }
 

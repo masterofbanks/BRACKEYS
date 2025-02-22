@@ -862,6 +862,15 @@ public partial class @PIAs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Click"",
+                    ""type"": ""Button"",
+                    ""id"": ""a95f0f0e-9dcc-4f92-965b-f867566b4829"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -917,6 +926,17 @@ public partial class @PIAs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Cam1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9aaf0a31-1343-4d96-b1f7-5a9d3d63c73c"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Click"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1011,6 +1031,7 @@ public partial class @PIAs: IInputActionCollection2, IDisposable
         m_Desk_Cam3 = m_Desk.FindAction("Cam3", throwIfNotFound: true);
         m_Desk_Cam4 = m_Desk.FindAction("Cam4", throwIfNotFound: true);
         m_Desk_TakeControl = m_Desk.FindAction("TakeControl", throwIfNotFound: true);
+        m_Desk_Click = m_Desk.FindAction("Click", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1265,6 +1286,7 @@ public partial class @PIAs: IInputActionCollection2, IDisposable
     private readonly InputAction m_Desk_Cam3;
     private readonly InputAction m_Desk_Cam4;
     private readonly InputAction m_Desk_TakeControl;
+    private readonly InputAction m_Desk_Click;
     public struct DeskActions
     {
         private @PIAs m_Wrapper;
@@ -1274,6 +1296,7 @@ public partial class @PIAs: IInputActionCollection2, IDisposable
         public InputAction @Cam3 => m_Wrapper.m_Desk_Cam3;
         public InputAction @Cam4 => m_Wrapper.m_Desk_Cam4;
         public InputAction @TakeControl => m_Wrapper.m_Desk_TakeControl;
+        public InputAction @Click => m_Wrapper.m_Desk_Click;
         public InputActionMap Get() { return m_Wrapper.m_Desk; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1298,6 +1321,9 @@ public partial class @PIAs: IInputActionCollection2, IDisposable
             @TakeControl.started += instance.OnTakeControl;
             @TakeControl.performed += instance.OnTakeControl;
             @TakeControl.canceled += instance.OnTakeControl;
+            @Click.started += instance.OnClick;
+            @Click.performed += instance.OnClick;
+            @Click.canceled += instance.OnClick;
         }
 
         private void UnregisterCallbacks(IDeskActions instance)
@@ -1317,6 +1343,9 @@ public partial class @PIAs: IInputActionCollection2, IDisposable
             @TakeControl.started -= instance.OnTakeControl;
             @TakeControl.performed -= instance.OnTakeControl;
             @TakeControl.canceled -= instance.OnTakeControl;
+            @Click.started -= instance.OnClick;
+            @Click.performed -= instance.OnClick;
+            @Click.canceled -= instance.OnClick;
         }
 
         public void RemoveCallbacks(IDeskActions instance)
@@ -1406,5 +1435,6 @@ public partial class @PIAs: IInputActionCollection2, IDisposable
         void OnCam3(InputAction.CallbackContext context);
         void OnCam4(InputAction.CallbackContext context);
         void OnTakeControl(InputAction.CallbackContext context);
+        void OnClick(InputAction.CallbackContext context);
     }
 }
