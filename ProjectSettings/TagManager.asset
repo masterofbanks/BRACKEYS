@@ -7,11 +7,20 @@ TagManager:
   - Minigame
   - CameraManager
   - Desk
+  - Rod
+  - Confines
+  - RodGoal
+  - DeskCam
+  - green
+  - blue
+  - black
+  - red
+  - yellow
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Rods
   - Water
   - UI
   - 

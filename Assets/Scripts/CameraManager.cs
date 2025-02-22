@@ -8,10 +8,13 @@ public class CameraManager : MonoBehaviour
 {
     [Header("Room Cameras")]
     public GameObject[] RoomCameras;
+    public GameObject[] MiniGameCams;
     public int currentCamIndex;
 
     [Header("Camera Room Cam")]
     public GameObject MainRoomCam;
+
+    
 
     [Header("Transition Manager")]
     public CameraTransitionManager cameraTransitionManager;
@@ -87,6 +90,11 @@ public class CameraManager : MonoBehaviour
             RoomCameras[i].SetActive(false);
             RoomCameras[i].GetComponent<RoomCameraFields>().player.GetComponent<Rigidbody2D>().velocity = Vector3.zero; 
             RoomCameras[i].GetComponent<RoomCameraFields>().player.GetComponent<PlayerMovement>().enabled = false;
+        }
+
+        for(int i = 0; i < MiniGameCams.Length; i++)
+        {
+            MiniGameCams[i].SetActive(false);
         }
     }
 
