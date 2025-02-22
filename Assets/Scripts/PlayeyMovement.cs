@@ -62,9 +62,10 @@ public class PlayeyMovement : MonoBehaviour
 
     private void Interact(InputAction.CallbackContext context)
     {
-        if(miniGameObject != null)
+        if(miniGameObject != null && !GameObject.FindWithTag("GameController").GetComponent<GameManager>().inMinigame)
         {
             miniGameObject.GetComponent<MinigameLocatorBehavior>().ChangeCamsToMinigame();
+            GameObject.FindWithTag("GameController").GetComponent<GameManager>().inMinigame = true;
         }
     }
 
