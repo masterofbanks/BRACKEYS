@@ -6,6 +6,7 @@ public class RoomCameraFields : MonoBehaviour
 {
     public GameObject room;
     public GameObject player;
+    public bool isMain;
     void Start()
     {
         

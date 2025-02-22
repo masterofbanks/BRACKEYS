@@ -891,6 +891,15 @@ public partial class @PIAs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Main"",
+                    ""type"": ""Button"",
+                    ""id"": ""1d4b2e29-19b3-499e-a40e-cd1f3a820520"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -957,6 +966,17 @@ public partial class @PIAs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8ae08429-65ca-46ac-9926-944f968ccb2b"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Main"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1053,6 +1073,7 @@ public partial class @PIAs: IInputActionCollection2, IDisposable
         m_Desk_Cam4 = m_Desk.FindAction("Cam4", throwIfNotFound: true);
         m_Desk_TakeControl = m_Desk.FindAction("TakeControl", throwIfNotFound: true);
         m_Desk_Click = m_Desk.FindAction("Click", throwIfNotFound: true);
+        m_Desk_Main = m_Desk.FindAction("Main", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1316,6 +1337,7 @@ public partial class @PIAs: IInputActionCollection2, IDisposable
     private readonly InputAction m_Desk_Cam4;
     private readonly InputAction m_Desk_TakeControl;
     private readonly InputAction m_Desk_Click;
+    private readonly InputAction m_Desk_Main;
     public struct DeskActions
     {
         private @PIAs m_Wrapper;
@@ -1326,6 +1348,7 @@ public partial class @PIAs: IInputActionCollection2, IDisposable
         public InputAction @Cam4 => m_Wrapper.m_Desk_Cam4;
         public InputAction @TakeControl => m_Wrapper.m_Desk_TakeControl;
         public InputAction @Click => m_Wrapper.m_Desk_Click;
+        public InputAction @Main => m_Wrapper.m_Desk_Main;
         public InputActionMap Get() { return m_Wrapper.m_Desk; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1353,6 +1376,9 @@ public partial class @PIAs: IInputActionCollection2, IDisposable
             @Click.started += instance.OnClick;
             @Click.performed += instance.OnClick;
             @Click.canceled += instance.OnClick;
+            @Main.started += instance.OnMain;
+            @Main.performed += instance.OnMain;
+            @Main.canceled += instance.OnMain;
         }
 
         private void UnregisterCallbacks(IDeskActions instance)
@@ -1375,6 +1401,9 @@ public partial class @PIAs: IInputActionCollection2, IDisposable
             @Click.started -= instance.OnClick;
             @Click.performed -= instance.OnClick;
             @Click.canceled -= instance.OnClick;
+            @Main.started -= instance.OnMain;
+            @Main.performed -= instance.OnMain;
+            @Main.canceled -= instance.OnMain;
         }
 
         public void RemoveCallbacks(IDeskActions instance)
@@ -1466,5 +1495,6 @@ public partial class @PIAs: IInputActionCollection2, IDisposable
         void OnCam4(InputAction.CallbackContext context);
         void OnTakeControl(InputAction.CallbackContext context);
         void OnClick(InputAction.CallbackContext context);
+        void OnMain(InputAction.CallbackContext context);
     }
 }
