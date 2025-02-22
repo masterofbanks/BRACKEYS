@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 060f028de83270944be39fe5e84f6953
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - cctvMaterial: {fileID: 2100000, guid: 49b484cf08a0a4d42b03a32020ee39d7, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
