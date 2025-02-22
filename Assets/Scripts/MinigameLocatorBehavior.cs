@@ -5,7 +5,7 @@ using UnityEngine;
 public class MinigameLocatorBehavior : MonoBehaviour
 {
 
-    public GameObject miniGameCamera;
+    public GameObject miniGameRoom;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +21,6 @@ public class MinigameLocatorBehavior : MonoBehaviour
     public void ChangeCamsToMinigame()
     {
         GameObject.FindWithTag("CameraManager").GetComponent<CameraManager>().disableAllCameras();
-        miniGameCamera.SetActive(true);
+        miniGameRoom.GetComponent<MiniGameManagement>().cam.SetActive(true);
     }
 }
