@@ -36,9 +36,11 @@ public class RodGameManager : MiniGameManager
 
     private void OnDisable()
     {
-        GameObject.FindWithTag("CameraManager").GetComponent<CameraManager>().GoBackToMain();
+        GameObject.FindWithTag("CameraManager").GetComponent<CameraManager>().ActivateCamera(GameObject.FindWithTag("CameraManager").GetComponent<CameraManager>().currentCamIndex);
+        GameObject.FindWithTag("Desk").GetComponent<DeskManager>().player.GetComponent<PlayerMovement>().enabled = true;
         GameObject.FindWithTag("GameController").GetComponent<GameManager>().inMinigame = false;
         Destroy(local_broken_rod);
         Destroy(local_horizontal_rod);
+        
     }
 }
