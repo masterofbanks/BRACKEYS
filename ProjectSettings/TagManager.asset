@@ -8,6 +8,11 @@ TagManager:
   - CameraManager
   - Desk
   - DeskCam
+  - green
+  - blue
+  - black
+  - red
+  - yellow
   layers:
   - Default
   - TransparentFX

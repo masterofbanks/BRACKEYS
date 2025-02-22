@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 192319270}
   m_Layer: 0
   m_Name: BlueButton_0
-  m_TagString: Untagged
+  m_TagString: blue
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -434,7 +434,7 @@ GameObject:
   - component: {fileID: 264295064}
   m_Layer: 0
   m_Name: GreenButton_0
-  m_TagString: Untagged
+  m_TagString: green
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1388,7 +1388,7 @@ GameObject:
   - component: {fileID: 829320392}
   m_Layer: 0
   m_Name: ButtonBlack_0
-  m_TagString: Untagged
+  m_TagString: black
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2288,7 +2288,7 @@ GameObject:
   - component: {fileID: 1068031458}
   m_Layer: 0
   m_Name: ButtonYellow_0
-  m_TagString: Untagged
+  m_TagString: yellow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2746,6 +2746,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraManager: {fileID: 830636867}
   cameraTransitionManager: {fileID: 830636870}
+  greenButton: {fileID: 264295060}
+  blueButton: {fileID: 192319266}
+  redButton: {fileID: 1776288290}
+  yellowButton: {fileID: 1068031457}
+  blackButton: {fileID: 829320391}
   inControl: 0
   deskLayer:
     serializedVersion: 2
@@ -4039,7 +4044,7 @@ GameObject:
   - component: {fileID: 1776288294}
   m_Layer: 0
   m_Name: RedButton_0
-  m_TagString: Untagged
+  m_TagString: red
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
