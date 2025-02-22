@@ -7,6 +7,7 @@ TagManager:
   - Minigame
   - CameraManager
   - Desk
+  - DeskCam
   layers:
   - Default
   - TransparentFX

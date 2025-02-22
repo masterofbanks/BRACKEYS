@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEditor.Experimental.GraphView.GraphView;
+//using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class DeskManager : MonoBehaviour
 {
@@ -103,9 +103,18 @@ public class DeskManager : MonoBehaviour
     }
     private void Click(InputAction.CallbackContext context)
     {
-
-        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f));
+        Ray ray = GameObject.FindWithTag("DeskCam").GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, deskLayer);
-
+        if(hit.collider != null)
+        {
+            Debug.Log(hit.collider.gameObject.tag);
+            StartCoroutine(PlayAnimation(hit));
+        }
+    }
+    IEnumerator PlayAnimation(RaycastHit2D hit)
+    {
+        hit.collider.gameObject.GetComponent<Animator>().SetBool("clicked", true);
+        yield return new WaitForSeconds(0.20f);
+        hit.collider.gameObject.GetComponent<Animator>().SetBool("clicked", false);
     }
 }
