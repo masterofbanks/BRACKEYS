@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEditor.Experimental.GraphView.GraphView;
+//using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class DeskManager : MonoBehaviour
 {
@@ -12,6 +12,13 @@ public class DeskManager : MonoBehaviour
 
     [Header("Transition Manager")]
     public CameraTransitionManager cameraTransitionManager;
+
+    [Header("Buttons")]
+    public GameObject greenButton;
+    public GameObject blueButton;
+    public GameObject redButton;
+    public GameObject yellowButton;
+    public GameObject blackButton;
 
     public PIAs playerInputActions;
     private InputAction cam1;
@@ -61,18 +68,25 @@ public class DeskManager : MonoBehaviour
     }
     private void Cam1(InputAction.CallbackContext context)
     {
+        StartCoroutine(PlayAnimation(greenButton));
         SwitchCamTo(0);
     }
     private void Cam2(InputAction.CallbackContext context)
     {
+
+        StartCoroutine(PlayAnimation(redButton));
         SwitchCamTo(1);
     }
     private void Cam3(InputAction.CallbackContext context)
     {
+
+        StartCoroutine(PlayAnimation(yellowButton));
         SwitchCamTo(2);
     }
     private void Cam4(InputAction.CallbackContext context)
     {
+
+        StartCoroutine(PlayAnimation(blueButton));
         SwitchCamTo(3);
     }
     private void SwitchCamTo(int cam)
@@ -83,6 +97,7 @@ public class DeskManager : MonoBehaviour
     }
     private void TakeControl(InputAction.CallbackContext context)
     {
+        StartCoroutine(PlayAnimation(blackButton));
         takeControl.Disable();
         if (!cameraTransitionManager.isTransitioning)
         {
@@ -99,13 +114,57 @@ public class DeskManager : MonoBehaviour
             cameraTransitionManager.ToggleTransition();
         }
         takeControl.Enable();
-
     }
     private void Click(InputAction.CallbackContext context)
     {
-
-        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f));
+        Ray ray = GameObject.FindWithTag("DeskCam").GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, deskLayer);
-
+        if(hit.collider != null)
+        {
+            //StartCoroutine(PlayAnimation(hit.collider.gameObject));
+            switch (hit.collider.gameObject.tag)
+            {
+                case "green":
+                    StartCoroutine(PlayAnimation(greenButton));
+                    SwitchCamTo(0); break;
+                case "red":
+                    StartCoroutine(PlayAnimation(redButton));
+                    SwitchCamTo(1); break;
+                case "yellow":
+                    StartCoroutine(PlayAnimation(yellowButton));
+                    SwitchCamTo(2); break;
+                case "blue":
+                    StartCoroutine(PlayAnimation(blueButton));
+                    SwitchCamTo(3); break;
+                case "black":
+                    StartCoroutine(PlayAnimation(blackButton));
+                    takeControl.Disable();
+                    if (!cameraTransitionManager.isTransitioning)
+                    {
+                        DisableCamSwitch();
+                        if (inControl)
+                        {
+                            inControl = false;
+                            EnableCamSwitch();
+                        }
+                        else
+                        {
+                            inControl = true;
+                        }
+                        cameraTransitionManager.ToggleTransition();
+                    }
+                    takeControl.Enable(); break;
+                default: Debug.Log("no button"); break;
+            }
+        }
+    }
+    IEnumerator PlayAnimation(GameObject button)
+    {
+        if (!button.GetComponent<Animator>().GetBool(0))
+        {
+            button.GetComponent<Animator>().SetBool("clicked", true);
+            yield return new WaitForSeconds(0.20f);
+            button.GetComponent<Animator>().SetBool("clicked", false);
+        }
     }
 }
