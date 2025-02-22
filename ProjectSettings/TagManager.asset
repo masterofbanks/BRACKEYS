@@ -16,6 +16,7 @@ TagManager:
   - black
   - red
   - yellow
+  - q
   layers:
   - Default
   - TransparentFX

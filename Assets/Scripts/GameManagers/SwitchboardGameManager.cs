@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoomCameraFields : MonoBehaviour
+public class SwitchboardGameManager : MiniGameManager
 {
-    public GameObject room;
-    public GameObject player;
-    public bool isMain;
+    // Start is called before the first frame update
     void Start()
     {
         

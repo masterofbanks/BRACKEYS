@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RodGameManager : MonoBehaviour
+public class RodGameManager : MiniGameManager
 {
-    public GameObject cam;
     public GameObject broken_rod_prefab;
     public GameObject horizontal_rod_prefab;
 
@@ -13,20 +12,20 @@ public class RodGameManager : MonoBehaviour
 
     public GameObject local_broken_rod;
     public GameObject local_horizontal_rod;
-    
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public void StartUp()
+    private void OnEnable()
     {
         cam.SetActive(true);
         local_broken_rod = Instantiate(broken_rod_prefab, broken_orig_position.position, broken_orig_position.rotation);
@@ -35,7 +34,7 @@ public class RodGameManager : MonoBehaviour
         local_horizontal_rod.transform.parent = gameObject.transform;
     }
 
-    public void CleanUp()
+    private void OnDisable()
     {
         GameObject.FindWithTag("CameraManager").GetComponent<CameraManager>().GoBackToMain();
         GameObject.FindWithTag("GameController").GetComponent<GameManager>().inMinigame = false;
