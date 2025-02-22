@@ -813,6 +813,134 @@ public partial class @PIAs: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Desk"",
+            ""id"": ""65da55fc-c2f8-40ce-9bbc-006eae160957"",
+            ""actions"": [
+                {
+                    ""name"": ""Cam1"",
+                    ""type"": ""Button"",
+                    ""id"": ""15e19fbb-5db3-4bf6-9f6d-bd3604955895"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cam2"",
+                    ""type"": ""Button"",
+                    ""id"": ""7e330a74-ee79-49f7-aeb6-c61dce7cb684"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cam3"",
+                    ""type"": ""Button"",
+                    ""id"": ""45c4bba5-df24-484f-af2e-432629dd1afa"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cam4"",
+                    ""type"": ""Button"",
+                    ""id"": ""a19f832a-fc4a-4883-8bd2-300c67a5a0fe"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TakeControl"",
+                    ""type"": ""Button"",
+                    ""id"": ""d3df72c7-ba87-41cf-b92c-31a7e0eb7e90"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Click"",
+                    ""type"": ""Button"",
+                    ""id"": ""a95f0f0e-9dcc-4f92-965b-f867566b4829"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""11c21c5c-5652-42f0-96bd-f284275a6521"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TakeControl"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""10e94e7d-3b49-4fc1-af27-41d451a1b8ba"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cam4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c3513974-8ebb-4234-8455-cc31d7bc1871"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cam3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f568e7ed-96ef-48c2-a776-12d03f238fef"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cam2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cfc8b0b4-e6be-493f-8ebf-ac24b5755284"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cam1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9aaf0a31-1343-4d96-b1f7-5a9d3d63c73c"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -896,6 +1024,14 @@ public partial class @PIAs: IInputActionCollection2, IDisposable
         m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+        // Desk
+        m_Desk = asset.FindActionMap("Desk", throwIfNotFound: true);
+        m_Desk_Cam1 = m_Desk.FindAction("Cam1", throwIfNotFound: true);
+        m_Desk_Cam2 = m_Desk.FindAction("Cam2", throwIfNotFound: true);
+        m_Desk_Cam3 = m_Desk.FindAction("Cam3", throwIfNotFound: true);
+        m_Desk_Cam4 = m_Desk.FindAction("Cam4", throwIfNotFound: true);
+        m_Desk_TakeControl = m_Desk.FindAction("TakeControl", throwIfNotFound: true);
+        m_Desk_Click = m_Desk.FindAction("Click", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1141,6 +1277,92 @@ public partial class @PIAs: IInputActionCollection2, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
+
+    // Desk
+    private readonly InputActionMap m_Desk;
+    private List<IDeskActions> m_DeskActionsCallbackInterfaces = new List<IDeskActions>();
+    private readonly InputAction m_Desk_Cam1;
+    private readonly InputAction m_Desk_Cam2;
+    private readonly InputAction m_Desk_Cam3;
+    private readonly InputAction m_Desk_Cam4;
+    private readonly InputAction m_Desk_TakeControl;
+    private readonly InputAction m_Desk_Click;
+    public struct DeskActions
+    {
+        private @PIAs m_Wrapper;
+        public DeskActions(@PIAs wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Cam1 => m_Wrapper.m_Desk_Cam1;
+        public InputAction @Cam2 => m_Wrapper.m_Desk_Cam2;
+        public InputAction @Cam3 => m_Wrapper.m_Desk_Cam3;
+        public InputAction @Cam4 => m_Wrapper.m_Desk_Cam4;
+        public InputAction @TakeControl => m_Wrapper.m_Desk_TakeControl;
+        public InputAction @Click => m_Wrapper.m_Desk_Click;
+        public InputActionMap Get() { return m_Wrapper.m_Desk; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(DeskActions set) { return set.Get(); }
+        public void AddCallbacks(IDeskActions instance)
+        {
+            if (instance == null || m_Wrapper.m_DeskActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_DeskActionsCallbackInterfaces.Add(instance);
+            @Cam1.started += instance.OnCam1;
+            @Cam1.performed += instance.OnCam1;
+            @Cam1.canceled += instance.OnCam1;
+            @Cam2.started += instance.OnCam2;
+            @Cam2.performed += instance.OnCam2;
+            @Cam2.canceled += instance.OnCam2;
+            @Cam3.started += instance.OnCam3;
+            @Cam3.performed += instance.OnCam3;
+            @Cam3.canceled += instance.OnCam3;
+            @Cam4.started += instance.OnCam4;
+            @Cam4.performed += instance.OnCam4;
+            @Cam4.canceled += instance.OnCam4;
+            @TakeControl.started += instance.OnTakeControl;
+            @TakeControl.performed += instance.OnTakeControl;
+            @TakeControl.canceled += instance.OnTakeControl;
+            @Click.started += instance.OnClick;
+            @Click.performed += instance.OnClick;
+            @Click.canceled += instance.OnClick;
+        }
+
+        private void UnregisterCallbacks(IDeskActions instance)
+        {
+            @Cam1.started -= instance.OnCam1;
+            @Cam1.performed -= instance.OnCam1;
+            @Cam1.canceled -= instance.OnCam1;
+            @Cam2.started -= instance.OnCam2;
+            @Cam2.performed -= instance.OnCam2;
+            @Cam2.canceled -= instance.OnCam2;
+            @Cam3.started -= instance.OnCam3;
+            @Cam3.performed -= instance.OnCam3;
+            @Cam3.canceled -= instance.OnCam3;
+            @Cam4.started -= instance.OnCam4;
+            @Cam4.performed -= instance.OnCam4;
+            @Cam4.canceled -= instance.OnCam4;
+            @TakeControl.started -= instance.OnTakeControl;
+            @TakeControl.performed -= instance.OnTakeControl;
+            @TakeControl.canceled -= instance.OnTakeControl;
+            @Click.started -= instance.OnClick;
+            @Click.performed -= instance.OnClick;
+            @Click.canceled -= instance.OnClick;
+        }
+
+        public void RemoveCallbacks(IDeskActions instance)
+        {
+            if (m_Wrapper.m_DeskActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IDeskActions instance)
+        {
+            foreach (var item in m_Wrapper.m_DeskActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_DeskActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public DeskActions @Desk => new DeskActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -1205,5 +1427,14 @@ public partial class @PIAs: IInputActionCollection2, IDisposable
         void OnRightClick(InputAction.CallbackContext context);
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+    }
+    public interface IDeskActions
+    {
+        void OnCam1(InputAction.CallbackContext context);
+        void OnCam2(InputAction.CallbackContext context);
+        void OnCam3(InputAction.CallbackContext context);
+        void OnCam4(InputAction.CallbackContext context);
+        void OnTakeControl(InputAction.CallbackContext context);
+        void OnClick(InputAction.CallbackContext context);
     }
 }

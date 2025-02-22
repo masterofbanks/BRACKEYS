@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayeyMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     public PIAs player_input_actions;
     public GameObject miniGameObject;
