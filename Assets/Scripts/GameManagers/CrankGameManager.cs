@@ -27,6 +27,7 @@ public class CrankGameManager : MiniGameManager
 
     private void OnEnable()
     {
-        Debug.Log("We gettting here");
+        cam.SetActive(true);
+        //Debug.Log("We gettting here");
     }
 }
