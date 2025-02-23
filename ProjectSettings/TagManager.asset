@@ -19,7 +19,8 @@ TagManager:
   - q
   - MinigameOn
   - crankCam
-  - dialCam
+  - RodWalls
+  - Warning
   layers:
   - Default
   - TransparentFX

@@ -19,12 +19,16 @@ public class RodBehavior : MonoBehaviour
     public bool horizontal_rod;
     private Rigidbody2D rb;
     private float z_coord;
+    private Vector3 orig_pos;
+    private bool canMove;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         startRotating = false;
+        canMove = true;
+        orig_pos = transform.position;
         if (horizontal_rod)
         {
             z_coord = 90;
@@ -41,9 +45,13 @@ public class RodBehavior : MonoBehaviour
     {
         rawDirectionInputs = move.ReadValue<Vector2>();
         DirectionalInput = new Vector2(System.Math.Sign(rawDirectionInputs.x), System.Math.Sign(rawDirectionInputs.y));
-        rb.velocity = rawDirectionInputs * moveSpeed;
+        if (canMove)
+        {
+            rb.velocity = rawDirectionInputs * moveSpeed;
 
-        
+        }
+
+
     }
 
     private void Awake()
@@ -83,6 +91,20 @@ public class RodBehavior : MonoBehaviour
             Debug.Log("Goal Reached");
             GetComponentInParent<RodGameManager>().enabled = false;
         }
+
+        else if (collision.gameObject.CompareTag("RodWalls"))
+        {
+            transform.position = orig_pos;
+            StartCoroutine(StopMovingTemp());
+            GetComponentInParent<RodGameManager>().YouveHitAWall();
+        }
+    }
+
+    IEnumerator StopMovingTemp()
+    {
+        canMove = false;
+        yield return new WaitForSeconds(0.5f);
+        canMove = true;
     }
 
 
