@@ -23,6 +23,7 @@ TagManager:
   - Warning
   - dialCam
   - lightCam
+  - Notification
   layers:
   - Default
   - TransparentFX
