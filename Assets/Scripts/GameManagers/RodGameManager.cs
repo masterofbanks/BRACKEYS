@@ -25,20 +25,18 @@ public class RodGameManager : MiniGameManager
 
     }
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
-        cam.SetActive(true);
+        base.OnEnable();
         local_broken_rod = Instantiate(broken_rod_prefab, broken_orig_position.position, broken_orig_position.rotation);
         local_broken_rod.transform.parent = gameObject.transform;
         local_horizontal_rod = Instantiate(horizontal_rod_prefab, horizontal_orig_position.position, horizontal_orig_position.rotation);
         local_horizontal_rod.transform.parent = gameObject.transform;
     }
 
-    private void OnDisable()
+    protected override void OnDisable()
     {
-        GameObject.FindWithTag("CameraManager").GetComponent<CameraManager>().ActivateCamera(GameObject.FindWithTag("CameraManager").GetComponent<CameraManager>().currentCamIndex);
-        GameObject.FindWithTag("Desk").GetComponent<DeskManager>().player.GetComponent<PlayerMovement>().enabled = true;
-        GameObject.FindWithTag("GameController").GetComponent<GameManager>().inMinigame = false;
+        base.OnDisable();
         Destroy(local_broken_rod);
         Destroy(local_horizontal_rod);
         
