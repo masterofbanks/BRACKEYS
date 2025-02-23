@@ -6,7 +6,7 @@ public class CameraTransitionManager : MonoBehaviour
 {
     public Camera mainCamera;
     public Transform targetTransform; // The transform of the UI Image or Sprite Renderer
-    public float transitionDuration = 0.5f; // Duration of the transition
+    public float transitionDuration = 4.0f; // Duration of the transition
     public CCTVRippleEffect cctvEffect;
     private Vector3 originalPosition;
     private float originalSize;
@@ -33,106 +33,94 @@ public class CameraTransitionManager : MonoBehaviour
             }
         }
     }
-    private IEnumerator TransitionToTarget()
-    {
-        isTransitioning = true;
 
-        SpriteRenderer spriteRenderer = targetTransform.GetComponent<SpriteRenderer>();
-        if (spriteRenderer == null)
+private IEnumerator TransitionToTarget()
+{
+    isTransitioning = true;
+
+    SpriteRenderer spriteRenderer = targetTransform.GetComponent<SpriteRenderer>();
+    if (spriteRenderer == null)
+    {
+        Debug.LogError("Target transform does not have a SpriteRenderer component.");
+        yield break;
+    }
+
+    float spriteHeight = spriteRenderer.bounds.size.y;
+    float spriteWidth = spriteRenderer.bounds.size.x;
+    float targetSize = Mathf.Max(spriteHeight, spriteWidth * mainCamera.pixelHeight / mainCamera.pixelWidth) / 2f;
+
+    Vector3 targetPosition = targetTransform.position;
+    targetPosition.z = mainCamera.transform.position.z;
+
+    // Record starting values.
+    Vector3 startPosition = mainCamera.transform.position;
+    float startSize = mainCamera.orthographicSize;
+
+    bool rippleTriggered = false;
+    float alpha = 3f; // Adjust to control the exponential curve.
+    float timer = 0f;
+    while (timer < transitionDuration)
+    {
+        // Compute a normalized exponential ease-out factor.
+        float factor = (1 - Mathf.Exp(-alpha * timer)) / (1 - Mathf.Exp(-alpha * transitionDuration));
+
+        // Interpolate using our factor.
+        mainCamera.transform.position = Vector3.Lerp(startPosition, targetPosition, factor);
+        mainCamera.orthographicSize = Mathf.Lerp(startSize, targetSize, factor);
+
+        float tNormalized = timer / transitionDuration;
+        if (!rippleTriggered && tNormalized >= 0.5f)
         {
-            Debug.LogError("Target transform does not have a SpriteRenderer component.");
-            yield break;
+            cctvEffect.ToggleRipple(transitionDuration, false);
+            rippleTriggered = true;
         }
 
-        float spriteHeight = spriteRenderer.bounds.size.y;
-        float spriteWidth = spriteRenderer.bounds.size.x;
-        float targetSize = Mathf.Max(spriteHeight, spriteWidth * mainCamera.pixelHeight / mainCamera.pixelWidth) / 2f;
+        timer += Time.deltaTime;
+        yield return null;
+    }
 
-        Vector3 targetPosition = targetTransform.position;
-        targetPosition.z = mainCamera.transform.position.z;
+    // Snap to target values at the end.
+    mainCamera.transform.position = targetPosition;
+    mainCamera.orthographicSize = targetSize;
+    isTransitioning = false;
+    isZoomedIn = true;
+}
 
-        bool rippleTriggered = false;
-        float smoothing = 5f; // Adjust this factor to change the decay rate
+private IEnumerator TransitionToOriginal()
+{
+    isTransitioning = true;
 
-        float timer = 0f;
-        while (timer < transitionDuration ||
-            Vector3.Distance(mainCamera.transform.position, targetPosition) > 0.001f ||
-            Mathf.Abs(mainCamera.orthographicSize - targetSize) > 0.001f)
+    // Record starting values.
+    Vector3 startPosition = mainCamera.transform.position;
+    float startSize = mainCamera.orthographicSize;
+    Vector3 targetPosition = originalPosition;
+    float targetSize = originalSize;
+
+    bool rippleTriggered = false;
+    float alpha = 3f; // Use same exponent factor.
+    float timer = 0f;
+    while (timer < transitionDuration)
+    {
+        float factor = (1 - Mathf.Exp(-alpha * timer)) / (1 - Mathf.Exp(-alpha * transitionDuration));
+        mainCamera.transform.position = Vector3.Lerp(startPosition, targetPosition, factor);
+        mainCamera.orthographicSize = Mathf.Lerp(startSize, targetSize, factor);
+
+        float tNormalized = timer / transitionDuration;
+        if (!rippleTriggered && tNormalized >= 0.5f)
         {
-            // Exponential decay behavior: lerp from the current state toward the target
-            mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, targetPosition, Time.deltaTime * smoothing);
-            mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, targetSize, Time.deltaTime * smoothing);
-
-            float t = timer / transitionDuration;
-            if (!rippleTriggered && t >= 0.3f)
-            {
-                cctvEffect.ToggleRipple(transitionDuration / 2.0f, false);
-                rippleTriggered = true;
-            }
-
-            timer += Time.deltaTime;
-            yield return null;
+            cctvEffect.ToggleRipple(transitionDuration, true);
+            rippleTriggered = true;
         }
 
-        mainCamera.transform.position = targetPosition;
-        mainCamera.orthographicSize = targetSize;
-
-        isTransitioning = false;
-        isZoomedIn = true;
+        timer += Time.deltaTime;
+        yield return null;
     }
 
-
-    private IEnumerator TransitionToOriginal()
-    {
-        isTransitioning = true;
-
-        Vector3 targetPosition = originalPosition;
-        float targetSize = originalSize;
-        bool rippleTriggered = false;
-        float smoothing = 5f; // Same smoothing factor as above
-
-        float timer = 0f;
-        while (timer < transitionDuration ||
-            Vector3.Distance(mainCamera.transform.position, targetPosition) > 0.001f ||
-            Mathf.Abs(mainCamera.orthographicSize - targetSize) > 0.001f)
-        {
-            mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, targetPosition, Time.deltaTime * smoothing);
-            mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, targetSize, Time.deltaTime * smoothing);
-
-            float t = timer / transitionDuration;
-            if (!rippleTriggered && t >= 0f)
-            {
-                cctvEffect.ToggleRipple(transitionDuration / 4.0f, true);
-                rippleTriggered = true;
-            }
-
-            timer += Time.deltaTime;
-            yield return null;
-        }
-
-        mainCamera.transform.position = targetPosition;
-        mainCamera.orthographicSize = targetSize;
-
-        isTransitioning = false;
-        isZoomedIn = false;
-    }
+    mainCamera.transform.position = targetPosition;
+    mainCamera.orthographicSize = targetSize;
+    isTransitioning = false;
+    isZoomedIn = false;
+}
 
 
-    private void StopTransition()
-    {
-        isTransitioning = false;
-
-        // Reset the camera to the original position and size
-        mainCamera.transform.position = originalPosition;
-        mainCamera.orthographicSize = originalSize;
-        isZoomedIn = false;
-    }
-
-    public void ResetCamera()
-    {
-        mainCamera.transform.position = originalPosition;
-        mainCamera.orthographicSize = originalSize;
-        isTransitioning = false;
-        isZoomedIn = false;
-    }
 }

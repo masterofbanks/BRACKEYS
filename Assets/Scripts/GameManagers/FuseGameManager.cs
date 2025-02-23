@@ -28,22 +28,23 @@ public class FuseGameManager : MiniGameManager
 
     }
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
         cam.SetActive(true);
         //local_broken_fuse = Instantiate(broken_fuse_prefab, broken_orig_position.position, broken_orig_position.rotation);
         //local_broken_fuse.transform.parent = gameObject.transform;
         local_whole_fuse = Instantiate(whole_fuse_prefab, whole_orig_position.position, whole_orig_position.rotation);
         local_whole_fuse.transform.parent = gameObject.transform;
+        base.OnEnable();
     }
 
-    private void OnDisable()
+    protected override void OnDisable()
     {
         GameObject.FindWithTag("CameraManager").GetComponent<CameraManager>().ActivateCamera(GameObject.FindWithTag("CameraManager").GetComponent<CameraManager>().currentCamIndex);
         GameObject.FindWithTag("Desk").GetComponent<DeskManager>().player.GetComponent<PlayerMovement>().enabled = true;
         GameObject.FindWithTag("GameController").GetComponent<GameManager>().inMinigame = false;
-        Destroy(local_broken_fuse);
         cut_whole_fuse.SetActive(false);
         cut_broken_fuse.SetActive(true);
+        base.OnDisable();
     }
 }

@@ -64,9 +64,16 @@ Shader "Custom/CCTVShader"
                 float2 origUV = i.uv;
                 float2 center = float2(0.5, 0.5);
 
+                // Base sine distortion (lower frequency)
+                float sine = sin(origUV.y * 10.0 + _Time.y * 2.0);
+                float2 sineOffset = float2(sine * _DistortionAmount * _EffectStrength, 0);
+
                 // Additional high-frequency distortion (more waves, weaker amplitude)
-                float highFreqSine = sin(origUV.y * 100.0 + _Time.y * 2.0);
+                float highFreqSine = sin(origUV.y * 40.0 + _Time.y * 2.0);
                 float2 highFreqOffset = float2(highFreqSine * _HighFrequencyDistortion * _EffectStrength, 0);
+
+                // Combine both distortions (they act "on top" of each other)
+                float2 combinedSineOffset = sineOffset + highFreqOffset;
 
                 // Compute edge distortion offset
                 float2 edgeDir = origUV - center;
@@ -74,16 +81,16 @@ Shader "Custom/CCTVShader"
                 float2 edgeOffset = edgeDir * _EdgeDistortion * (edgeDist * edgeDist);
 
                 // Combine offsets on top of the original coordinates.
-                float2 uv = origUV + highFreqOffset + edgeOffset;
+                float2 uv = origUV + combinedSineOffset + edgeOffset;
 
-                // Compute ripple mask (using original UVs)
+                // Use original UVs for the ripple mask (fixes the timing issue)
                 float ripple = smoothstep(_RippleProgress - _RippleSize, _RippleProgress, distance(origUV, center));
 
                 fixed4 col = tex2D(_MainTex, uv);
 
                 // Desaturate via grayscale mix.
                 float gray = dot(col.rgb, float3(0.299, 0.587, 0.114));
-                col.rgb = lerp(col.rgb, gray.xxx, _EffectStrength/2.0);
+                col.rgb = lerp(col.rgb, gray.xxx, _EffectStrength);
 
                 // Add scanlines (using original UV)
                 float scanline = sin(origUV.y * 800.0) * _ScanlineIntensity;
