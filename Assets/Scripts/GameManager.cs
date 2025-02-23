@@ -40,7 +40,6 @@ public class GameManager : MonoBehaviour
         if (timeToDisplay <= 0)
         {
             nonActiveGames = GameObject.FindGameObjectsWithTag("Minigame");
-
             if (nonActiveGames.Length == 0)
             {
                 Debug.Log("All Minigames activated; Lose??");
@@ -53,6 +52,7 @@ public class GameManager : MonoBehaviour
                 int randomIndex = rand.Next(0, nonActiveGames.Length);
                 nonActiveGames[randomIndex].GetComponent<MinigameLocatorBehavior>().TurnOn();
             }
+            
             timeToDisplay = Seconds;
         }
         
