@@ -10,8 +10,7 @@ public class DialBehavior : MonoBehaviour
     public int spins = 0;
     private void Start()
     {
-        //cam = GameObject.FindWithTag("dialCam").GetComponent<Camera>();
-        cam = GameObject.FindWithTag("q").GetComponent<Camera>();
+        cam = GameObject.FindWithTag("dialCam").GetComponent<Camera>();
     }
     void Update()
     {
@@ -30,9 +29,5 @@ public class DialBehavior : MonoBehaviour
     public void StopHold()
     {
         held = false;
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        spins++;
     }
 }

@@ -40,7 +40,6 @@ public class DialGameManager : MiniGameManager
             {
                 if (dialInstance3.GetComponent<Collider2D>().IsTouching(goalInstance3.GetComponent<Collider2D>()))
                 {
-                    Debug.Log("BROROROROORORO");
                     this.GetComponent<DialGameManager>().enabled = false;
                 }
             }
