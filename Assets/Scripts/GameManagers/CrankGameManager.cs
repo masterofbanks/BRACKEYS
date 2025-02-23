@@ -8,7 +8,7 @@ using static Unity.Collections.AllocatorManager;
 public class CrankGameManager : MiniGameManager
 {
     [Header("Game Settings")]
-    public int spinGoal = 6;
+    public int spinGoal = 8;
 
     [Header("Crank Collisions")]
     public GameObject[] gameObjects;
@@ -23,18 +23,13 @@ public class CrankGameManager : MiniGameManager
 
     [Header("Desk Layer")]
     public LayerMask deskLayer;
-
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        
+        if (wheelInstance.GetComponent<WheelBehavior>().spins >= spinGoal*4)
+        {
+            Debug.Log("end");
+        }
     }
-
     private void Awake()
     {
         playerInputActions = new PIAs();
@@ -60,13 +55,5 @@ public class CrankGameManager : MiniGameManager
             Debug.Log("hold");
             wheelInstance.GetComponent<WheelBehavior>().StartHold();
         }
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        /*if (collision.gameObject.CompareTag("genBottom"))
-        {
-            
-        }*/
-        Debug.Log(collision.gameObject.name);
     }
 }

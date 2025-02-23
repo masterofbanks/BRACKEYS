@@ -7,6 +7,9 @@ public class WheelBehavior : MonoBehaviour
     private bool held = false;
     private Camera cam;
 
+
+    public int spins = 0;
+
     private void Start()
     {
         cam = GameObject.FindWithTag("crankCam").GetComponent<Camera>();
@@ -24,5 +27,10 @@ public class WheelBehavior : MonoBehaviour
     public void StartHold()
     {
         held = true;
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        spins++;
+        Debug.Log(spins);
     }
 }
