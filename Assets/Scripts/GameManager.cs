@@ -39,8 +39,8 @@ public class GameManager : MonoBehaviour
         timerSeconds = Mathf.FloorToInt(timeToDisplay % 60);
         if (timeToDisplay <= 0)
         {
- 
-            if(nonActiveGames.Length == 0)
+            nonActiveGames = GameObject.FindGameObjectsWithTag("Minigame");
+            if (nonActiveGames.Length == 0)
             {
                 Debug.Log("All Minigames activated; Lose??");
                 SceneManager.LoadScene(1);
@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
                 int randomIndex = rand.Next(0, nonActiveGames.Length);
                 nonActiveGames[randomIndex].GetComponent<MinigameLocatorBehavior>().TurnOn();
             }
-            nonActiveGames = GameObject.FindGameObjectsWithTag("Minigame");
+            
             timeToDisplay = Seconds;
         }
         

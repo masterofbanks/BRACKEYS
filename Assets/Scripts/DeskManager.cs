@@ -113,7 +113,7 @@ public class DeskManager : MonoBehaviour
 
     private void MainCam(InputAction.CallbackContext context)
     {
-        if (!GameObject.FindWithTag("GameController").GetComponent<GameManager>().inMinigame)
+        if (!GameObject.FindWithTag("GameController").GetComponent<GameManager>().inMinigame && !cameraTransitionManager.isTransitioning)
         {
             StartCoroutine(PlayAnimation(q_button));
             SwitchCamTo(4);

@@ -14,7 +14,7 @@ public class SwitchboardGameManager : MiniGameManager
     {
         if (checkWinState() == true)
         {
-            this.gameObject.SetActive(false);
+            this.enabled = false;
         }
 
     }
