@@ -16,6 +16,14 @@ TagManager:
   - black
   - red
   - yellow
+  - q
+  - MinigameOn
+  - crankCam
+  - RodWalls
+  - Warning
+  - dialCam
+  - lightCam
+  - Notification
   layers:
   - Default
   - TransparentFX

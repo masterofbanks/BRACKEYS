@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class RodGameManager : MonoBehaviour
+public class RodGameManager : MiniGameManager
 {
-    public GameObject cam;
     public GameObject broken_rod_prefab;
     public GameObject horizontal_rod_prefab;
 
@@ -13,33 +13,61 @@ public class RodGameManager : MonoBehaviour
 
     public GameObject local_broken_rod;
     public GameObject local_horizontal_rod;
-    
+
+    public int numHitsOnWalls;
+    public GameObject warning;
+    public Transform[] WarningPosition; 
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public void StartUp()
+    protected override void OnEnable()
     {
-        cam.SetActive(true);
+        base.OnEnable();
         local_broken_rod = Instantiate(broken_rod_prefab, broken_orig_position.position, broken_orig_position.rotation);
         local_broken_rod.transform.parent = gameObject.transform;
         local_horizontal_rod = Instantiate(horizontal_rod_prefab, horizontal_orig_position.position, horizontal_orig_position.rotation);
         local_horizontal_rod.transform.parent = gameObject.transform;
     }
 
-    public void CleanUp()
+    protected override void OnDisable()
     {
-        GameObject.FindWithTag("CameraManager").GetComponent<CameraManager>().GoBackToMain();
-        GameObject.FindWithTag("GameController").GetComponent<GameManager>().inMinigame = false;
+        base.OnDisable();
         Destroy(local_broken_rod);
         Destroy(local_horizontal_rod);
+        numHitsOnWalls = 0;
+        GameObject[] warnings = GameObject.FindGameObjectsWithTag("Warning");
+        if(warnings.Length > 0)
+        {
+            for(int i = 0; i < warnings.Length; i++)
+            {
+                Destroy(warnings[i]);
+            }
+        }
+
+    }
+
+    public void YouveHitAWall()
+    {
+        numHitsOnWalls++;
+        if (numHitsOnWalls == 4)
+        {
+            SceneManager.LoadScene(1);
+        }
+
+        else
+        {
+            Instantiate(warning, WarningPosition[numHitsOnWalls - 1].position, WarningPosition[numHitsOnWalls - 1].rotation);
+
+        }
     }
 }

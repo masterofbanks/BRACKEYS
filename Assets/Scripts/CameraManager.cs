@@ -10,6 +10,7 @@ public class CameraManager : MonoBehaviour
     public GameObject[] RoomCameras;
     public GameObject[] MiniGameCams;
     public int currentCamIndex;
+    public int previousCamIndex;
 
     [Header("Camera Room Cam")]
     public GameObject MainRoomCam;
@@ -36,6 +37,7 @@ public class CameraManager : MonoBehaviour
         staticEffectInstance = Instantiate(StaticEffectPrefab);
         staticVideoPlayer = staticEffectInstance.GetComponent<VideoPlayer>();
 
+        // Set the VideoPlayer's render mode to CameraNearPlane and assign the main camera
         // Set the VideoPlayer's render mode to CameraNearPlane and assign the main camera
         staticVideoPlayer.renderMode = VideoRenderMode.CameraNearPlane;
         staticVideoPlayer.targetCamera = Camera.main;
@@ -74,11 +76,13 @@ public class CameraManager : MonoBehaviour
     }
     public void ActivateCamera(int camIndex)
     {
+        previousCamIndex = currentCamIndex;
         currentCamIndex = camIndex;
         disableAllCameras();
         MainRoomCam.SetActive(false);
         RoomCameras[camIndex].SetActive(true);
-        RoomCameras[camIndex].GetComponent<RoomCameraFields>().player.GetComponent<PlayerMovement>().enabled = true;
+        if (!RoomCameras[camIndex].GetComponent<RoomCameraFields>().isMain)
+            GameObject.FindWithTag("Desk").GetComponent<DeskManager>().player = RoomCameras[camIndex].GetComponent<RoomCameraFields>().player;
     }
 
     
@@ -88,8 +92,16 @@ public class CameraManager : MonoBehaviour
         for (int i = 0; i < RoomCameras.Length; i++)
         {
             RoomCameras[i].SetActive(false);
-            RoomCameras[i].GetComponent<RoomCameraFields>().player.GetComponent<Rigidbody2D>().velocity = Vector3.zero; 
-            RoomCameras[i].GetComponent<RoomCameraFields>().player.GetComponent<PlayerMovement>().enabled = false;
+            if (!RoomCameras[i].GetComponent<RoomCameraFields>().isMain)
+            {
+                if(RoomCameras[i].GetComponent<RoomCameraFields>().player != null)
+                {
+                    RoomCameras[i].GetComponent<RoomCameraFields>().player.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+
+                }
+                RoomCameras[i].GetComponent<RoomCameraFields>().player.GetComponent<PlayerMovement>().enabled = false;
+            }
+            
         }
 
         for(int i = 0; i < MiniGameCams.Length; i++)
