@@ -5,12 +5,20 @@ using UnityEngine;
 public class WheelBehavior : MonoBehaviour
 {
     private bool held = false;
+    private Camera cam;
+
+    private void Start()
+    {
+        cam = GameObject.FindWithTag("crankCam").GetComponent<Camera>();
+    }
     void Update()
     {
+        Vector3 mousePosition = Input.mousePosition;
+        mousePosition = cam.ScreenToWorldPoint(mousePosition);
         if (held)
         {
-            Vector2 direction = new Vector2(Input.mousePosition.x - transform.position.x, Input.mousePosition.y - transform.position.y);
-            transform.up = direction;
+            Vector2 direction = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y);
+            transform.right = direction;
         }
     }
     public void StartHold()

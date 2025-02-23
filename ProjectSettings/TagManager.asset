@@ -17,6 +17,7 @@ TagManager:
   - red
   - yellow
   - q
+  - crankCam
   layers:
   - Default
   - TransparentFX
