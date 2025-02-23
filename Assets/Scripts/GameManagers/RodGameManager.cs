@@ -61,7 +61,7 @@ public class RodGameManager : MiniGameManager
         numHitsOnWalls++;
         if (numHitsOnWalls == 4)
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(4);
         }
 
         else
