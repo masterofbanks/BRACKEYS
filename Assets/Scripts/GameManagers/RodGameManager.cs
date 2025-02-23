@@ -45,7 +45,14 @@ public class RodGameManager : MiniGameManager
         Destroy(local_broken_rod);
         Destroy(local_horizontal_rod);
         numHitsOnWalls = 0;
-
+        GameObject[] warnings = GameObject.FindGameObjectsWithTag("Warning");
+        if(warnings.Length > 0)
+        {
+            for(int i = 0; i < warnings.Length; i++)
+            {
+                Destroy(warnings[i]);
+            }
+        }
 
     }
 

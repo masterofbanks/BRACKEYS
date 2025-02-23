@@ -20,6 +20,7 @@ TagManager:
   - MinigameOn
   - crankCam
   - RodWalls
+  - Warning
   layers:
   - Default
   - TransparentFX
