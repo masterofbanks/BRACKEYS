@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RodGameManager : MiniGameManager
 {
@@ -12,6 +13,10 @@ public class RodGameManager : MiniGameManager
 
     public GameObject local_broken_rod;
     public GameObject local_horizontal_rod;
+
+    public int numHitsOnWalls;
+    public GameObject warning;
+    public Transform[] WarningPosition; 
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +44,23 @@ public class RodGameManager : MiniGameManager
         base.OnDisable();
         Destroy(local_broken_rod);
         Destroy(local_horizontal_rod);
-        
+        numHitsOnWalls = 0;
+
+
+    }
+
+    public void YouveHitAWall()
+    {
+        numHitsOnWalls++;
+        if (numHitsOnWalls == 4)
+        {
+            SceneManager.LoadScene(1);
+        }
+
+        else
+        {
+            Instantiate(warning, WarningPosition[numHitsOnWalls - 1].position, WarningPosition[numHitsOnWalls - 1].rotation);
+
+        }
     }
 }

@@ -94,7 +94,11 @@ public class CameraManager : MonoBehaviour
             RoomCameras[i].SetActive(false);
             if (!RoomCameras[i].GetComponent<RoomCameraFields>().isMain)
             {
-                RoomCameras[i].GetComponent<RoomCameraFields>().player.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+                if(RoomCameras[i].GetComponent<RoomCameraFields>().player != null)
+                {
+                    RoomCameras[i].GetComponent<RoomCameraFields>().player.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+
+                }
                 RoomCameras[i].GetComponent<RoomCameraFields>().player.GetComponent<PlayerMovement>().enabled = false;
             }
             

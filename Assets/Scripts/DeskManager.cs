@@ -235,4 +235,10 @@ public class DeskManager : MonoBehaviour
         
     }
 
+    private void OnDisable()
+    {
+        click.Disable();
+        GoToMain.Disable();
+    }
+
 }

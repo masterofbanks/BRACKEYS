@@ -18,6 +18,8 @@ TagManager:
   - yellow
   - q
   - MinigameOn
+  - crankCam
+  - RodWalls
   layers:
   - Default
   - TransparentFX
