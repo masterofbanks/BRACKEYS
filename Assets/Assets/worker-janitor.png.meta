@@ -643,7 +643,7 @@ TextureImporter:
       name: worker-janitor_24
       rect:
         serializedVersion: 2
-        x: 0
+        x: 5
         y: 0
         width: 48
         height: 48
@@ -664,7 +664,7 @@ TextureImporter:
       name: worker-janitor_25
       rect:
         serializedVersion: 2
-        x: 48
+        x: 72
         y: 0
         width: 48
         height: 48

@@ -47,6 +47,10 @@ public class GameManager : MonoBehaviour
         //if there are none -> do nothing for now but this might be a losing condition
         //randomly pick one of those minigame locators and make it active plus change its tag
         //picking that minigame plays some sort of signal effect telling the player that that minigame is active
+        if (timeToDisplay <= 0)
+        {
+            SceneManager.LoadScene(3);
+        }
     }
 
     void TickMinigameCount()
@@ -67,7 +71,7 @@ public class GameManager : MonoBehaviour
         if (nonActiveGames.Length == 0)
         {
             Debug.Log("All Minigames activated; Lose??");
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(4);
         }
         else
         {
