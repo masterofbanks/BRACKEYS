@@ -36,7 +36,7 @@ Material:
     - _FlickerSpeed: 0.8
     - _HighFrequencyDistortion: 0.001
     - _NoiseIntensity: 0.056
-    - _RippleProgress: 0.9
+    - _RippleProgress: 0
     - _RippleSize: 0.5
     - _ScanlineIntensity: 0.065
     - _TintStrength: 0.648
