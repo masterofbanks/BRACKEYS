@@ -22,9 +22,9 @@ public class DialGameManager : MiniGameManager
 
 
     [Header("Dial Positions")]
-    public Transform dialtranny1;
-    public Transform dialtranny2;
-    public Transform dialtranny3;
+    public Transform dialtran1;
+    public Transform dialtran2;
+    public Transform dialtran3;
 
     [Header("Input")]
     public PIAs playerInputActions;
@@ -59,15 +59,15 @@ public class DialGameManager : MiniGameManager
         click.canceled += Release;
 
         //instantiate wheel at center of room
-        dialInstance1 = Instantiate(dialPrefab, dialtranny1);
-        dialInstance2 = Instantiate(dialPrefab, dialtranny2);
-        dialInstance3 = Instantiate(dialPrefab, dialtranny3);
+        dialInstance1 = Instantiate(dialPrefab, dialtran1);
+        dialInstance2 = Instantiate(dialPrefab, dialtran2);
+        dialInstance3 = Instantiate(dialPrefab, dialtran3);
 
-        goalInstance1 = Instantiate(goalPrefab, dialtranny1); 
+        goalInstance1 = Instantiate(goalPrefab, dialtran1); 
         goalInstance1.transform.Rotate(0, 0, Random.Range(0f, 360f));
-        goalInstance2 = Instantiate(goalPrefab, dialtranny2);
+        goalInstance2 = Instantiate(goalPrefab, dialtran2);
         goalInstance2.transform.Rotate(0, 0, Random.Range(0f, 360f));
-        goalInstance3 = Instantiate(goalPrefab, dialtranny3);
+        goalInstance3 = Instantiate(goalPrefab, dialtran3);
         goalInstance3.transform.Rotate(0, 0, Random.Range(0f, 360f));
     }
     protected override void OnDisable()
