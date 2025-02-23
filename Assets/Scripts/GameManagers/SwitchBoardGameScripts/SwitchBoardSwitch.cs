@@ -5,7 +5,7 @@ using UnityEngine;
 public class SwitchBoardSwitch : MonoBehaviour
 {
     private GameObject controlledLight;
-    private bool isOn = true; // Track switch state
+    private bool isOn; // Track switch state
     private SpriteRenderer spriteRenderer;
 
     private float onY = 0.525f ;
@@ -14,6 +14,8 @@ public class SwitchBoardSwitch : MonoBehaviour
     public void Awake()
     {
         spriteRenderer = this.GetComponent<SpriteRenderer>();
+        isOn = Random.value > 0.5f;
+        UpdateSwitchState();
     }
     public void SetControlledLight(GameObject light)
     {

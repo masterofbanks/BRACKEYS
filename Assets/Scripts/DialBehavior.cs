@@ -2,17 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WheelBehavior : MonoBehaviour
+public class DialBehavior : MonoBehaviour
 {
     private bool held = false;
     private Camera cam;
 
-
     public int spins = 0;
-
     private void Start()
     {
-        cam = GameObject.FindWithTag("crankCam").GetComponent<Camera>();
+        cam = GameObject.FindWithTag("dialCam").GetComponent<Camera>();
     }
     void Update()
     {
@@ -21,15 +19,15 @@ public class WheelBehavior : MonoBehaviour
         if (held)
         {
             Vector2 direction = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y);
-            transform.right = direction;
+            transform.up = direction;
         }
     }
     public void StartHold()
     {
         held = true;
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void StopHold()
     {
-        spins++;
+        held = false;
     }
 }
