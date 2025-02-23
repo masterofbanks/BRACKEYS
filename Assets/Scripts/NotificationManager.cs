@@ -55,13 +55,22 @@ public class NotificationManager : MonoBehaviour
         }
     }
 
-    public void HideNotification(GameObject notif)
+    public void HideNotification(string name)
     {
+        GameObject notif = null;
+        foreach (GameObject dignus in roomSpecificNotifications)
+        {
+            if (dignus.name == name)
+            {
+               notif = dignus;
+            }
+        }
         if (persistentNotifications.Contains(notif))
         {
             persistentNotifications.Remove(notif);
+            notif.SetActive(false);
         }
-        notif.SetActive(false);
+       
     }
 
     private IEnumerator BlinkNotificationsShort()

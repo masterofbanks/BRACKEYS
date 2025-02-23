@@ -45,6 +45,7 @@ public class MinigameLocatorBehavior : MonoBehaviour
         trigger.enabled = false;
         nonTrigger.enabled = false;
         spriteRenderer.enabled = false;
+        notificationManager.HideNotification(transform.parent.gameObject.name);
     }
 
     public void ChangeCamsToMinigame()
