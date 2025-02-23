@@ -14,7 +14,7 @@ public class SwitchboardGameManager : MiniGameManager
     {
         if (checkWinState() == true)
         {
-            this.GetComponent<SwitchboardGameManager>().enabled = false;
+            this.gameObject.SetActive(false);
         }
 
     }
@@ -35,21 +35,13 @@ public class SwitchboardGameManager : MiniGameManager
     {
         List<GameObject> availableLights = new List<GameObject>(lightList);
 
-        int numberOfSwitchesOn = Random.value > 0.7f ? 3 : 2;
         foreach (GameObject switchObj in switchList)
         {
             if (availableLights.Count == 0) break; // Avoid errors if more switches than lights
 
             int randomIndex = Random.Range(0, availableLights.Count);
             switchLightMapping[switchObj] = availableLights[randomIndex];
-            if (numberOfSwitchesOn > 0)
-            {
-                availableLights[randomIndex].GetComponent<SwitchBoardLight>().ToggleLight();
-                numberOfSwitchesOn--;
-            }
             availableLights.RemoveAt(randomIndex); // Ensure each light is assigned only once
-
-            
 
             // Assign light reference to switch component (if applicable)
             SwitchBoardSwitch switchComponent = switchObj.GetComponent<SwitchBoardSwitch>();

@@ -31,5 +31,6 @@ public class WheelBehavior : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         spins++;
+        Debug.Log(spins);
     }
 }

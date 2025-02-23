@@ -34,10 +34,10 @@ public class CrankGameManager : MiniGameManager
     {
         playerInputActions = new PIAs();
     }
-    protected override void OnEnable()
+    private void OnEnable()
     {
         //activate camera
-        base.OnEnable();
+        cam.SetActive(true);
         //activate clicking
         click = playerInputActions.Desk.Click;
         click.Enable();
@@ -45,10 +45,14 @@ public class CrankGameManager : MiniGameManager
         //instantiate wheel at center of room
         wheelInstance = Instantiate(wheelPrefab, transform);
     }
-    protected override void OnDisable()
+    private void OnDisable()
     {
-        base.OnDisable();
+        //locator remover .GetComponent<MinigameLocatorBehavior>().TurnOff();
+        GameObject.FindWithTag("CameraManager").GetComponent<CameraManager>().ActivateCamera(GameObject.FindWithTag("CameraManager").GetComponent<CameraManager>().currentCamIndex);
+        GameObject.FindWithTag("Desk").GetComponent<DeskManager>().player.GetComponent<PlayerMovement>().enabled = true;
+        GameObject.FindWithTag("GameController").GetComponent<GameManager>().inMinigame = false;
         Destroy(wheelInstance);
+
     }
     private void Click(InputAction.CallbackContext context)
     {

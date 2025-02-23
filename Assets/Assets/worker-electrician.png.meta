@@ -106,32 +106,6 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Windows Store Apps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -143,8 +117,8 @@ TextureImporter:
         y: 240
         width: 48
         height: 48
-      alignment: 9
-      pivot: {x: 0.3053643, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -164,8 +138,8 @@ TextureImporter:
         y: 240
         width: 48
         height: 48
-      alignment: 9
-      pivot: {x: 0.3053643, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -178,15 +152,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: worker-electrician_10
+      name: worker-electrician_2
       rect:
         serializedVersion: 2
-        x: 192
-        y: 192
+        x: 96
+        y: 240
         width: 48
         height: 48
-      alignment: 9
-      pivot: {x: 0.3053643, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -199,15 +173,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: worker-electrician_11
+      name: worker-electrician_3
       rect:
         serializedVersion: 2
-        x: 240
-        y: 192
+        x: 144
+        y: 240
         width: 48
         height: 48
-      alignment: 9
-      pivot: {x: 0.3053643, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -220,15 +194,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: worker-electrician_12
+      name: worker-electrician_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 144
+        x: 192
+        y: 240
         width: 48
         height: 48
-      alignment: 9
-      pivot: {x: 0.3053643, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -241,15 +215,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: worker-electrician_13
+      name: worker-electrician_5
       rect:
         serializedVersion: 2
-        x: 48
-        y: 144
+        x: 240
+        y: 240
         width: 48
         height: 48
-      alignment: 9
-      pivot: {x: 0.3053643, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -262,15 +236,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: worker-electrician_14
+      name: worker-electrician_6
       rect:
         serializedVersion: 2
         x: 0
-        y: 96
+        y: 192
         width: 48
         height: 48
-      alignment: 9
-      pivot: {x: 0.3053643, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -283,15 +257,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: worker-electrician_15
+      name: worker-electrician_7
       rect:
         serializedVersion: 2
         x: 48
-        y: 96
+        y: 192
         width: 48
         height: 48
-      alignment: 9
-      pivot: {x: 0.3053643, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -304,15 +278,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: worker-electrician_16
+      name: worker-electrician_8
       rect:
         serializedVersion: 2
         x: 96
-        y: 96
+        y: 192
         width: 48
         height: 48
-      alignment: 9
-      pivot: {x: 0.3053643, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -325,15 +299,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: worker-electrician_17
+      name: worker-electrician_9
       rect:
         serializedVersion: 2
         x: 144
-        y: 96
+        y: 192
         width: 48
         height: 48
-      alignment: 9
-      pivot: {x: 0.3053643, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -346,15 +320,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: worker-electrician_18
+      name: worker-electrician_10
       rect:
         serializedVersion: 2
-        x: 0
-        y: 48
+        x: 192
+        y: 192
         width: 48
         height: 48
-      alignment: 9
-      pivot: {x: 0.3053643, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -367,15 +341,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: worker-electrician_19
+      name: worker-electrician_11
       rect:
         serializedVersion: 2
-        x: 48
-        y: 48
+        x: 240
+        y: 192
         width: 48
         height: 48
-      alignment: 9
-      pivot: {x: 0.3053643, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -388,15 +362,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: worker-electrician_2
+      name: worker-electrician_12
       rect:
         serializedVersion: 2
-        x: 96
-        y: 240
+        x: 0
+        y: 144
         width: 48
         height: 48
-      alignment: 9
-      pivot: {x: 0.3053643, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -409,15 +383,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: worker-electrician_20
+      name: worker-electrician_13
       rect:
         serializedVersion: 2
-        x: 96
-        y: 48
+        x: 48
+        y: 144
         width: 48
         height: 48
-      alignment: 9
-      pivot: {x: 0.3053643, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -430,15 +404,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: worker-electrician_21
+      name: worker-electrician_14
       rect:
         serializedVersion: 2
-        x: 144
-        y: 48
+        x: 0
+        y: 96
         width: 48
         height: 48
-      alignment: 9
-      pivot: {x: 0.3053643, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -451,15 +425,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: worker-electrician_22
+      name: worker-electrician_15
       rect:
         serializedVersion: 2
-        x: 192
-        y: 48
+        x: 48
+        y: 96
         width: 48
         height: 48
-      alignment: 9
-      pivot: {x: 0.3053643, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -472,15 +446,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: worker-electrician_23
+      name: worker-electrician_16
       rect:
         serializedVersion: 2
-        x: 240
-        y: 48
+        x: 96
+        y: 96
         width: 48
         height: 48
-      alignment: 9
-      pivot: {x: 0.3053643, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -493,15 +467,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: worker-electrician_3
+      name: worker-electrician_17
       rect:
         serializedVersion: 2
         x: 144
-        y: 240
+        y: 96
         width: 48
         height: 48
-      alignment: 9
-      pivot: {x: 0.3053643, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -514,15 +488,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: worker-electrician_4
+      name: worker-electrician_18
       rect:
         serializedVersion: 2
-        x: 192
-        y: 240
+        x: 0
+        y: 48
         width: 48
         height: 48
-      alignment: 9
-      pivot: {x: 0.3053643, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -535,15 +509,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: worker-electrician_5
+      name: worker-electrician_19
       rect:
         serializedVersion: 2
-        x: 240
-        y: 240
+        x: 48
+        y: 48
         width: 48
         height: 48
-      alignment: 9
-      pivot: {x: 0.3053643, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -556,15 +530,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: worker-electrician_6
+      name: worker-electrician_20
       rect:
         serializedVersion: 2
-        x: 0
-        y: 192
+        x: 96
+        y: 48
         width: 48
         height: 48
-      alignment: 9
-      pivot: {x: 0.3053643, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -577,15 +551,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: worker-electrician_7
+      name: worker-electrician_21
       rect:
         serializedVersion: 2
-        x: 48
-        y: 192
+        x: 144
+        y: 48
         width: 48
         height: 48
-      alignment: 9
-      pivot: {x: 0.3053643, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -598,15 +572,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: worker-electrician_8
+      name: worker-electrician_22
       rect:
         serializedVersion: 2
-        x: 96
-        y: 192
+        x: 192
+        y: 48
         width: 48
         height: 48
-      alignment: 9
-      pivot: {x: 0.3053643, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -619,15 +593,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: worker-electrician_9
+      name: worker-electrician_23
       rect:
         serializedVersion: 2
-        x: 144
-        y: 192
+        x: 240
+        y: 48
         width: 48
         height: 48
-      alignment: 9
-      pivot: {x: 0.3053643, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -652,28 +626,28 @@ TextureImporter:
     nameFileIdTable:
       worker-electrician_0: -1247182109
       worker-electrician_1: -1735698574
-      worker-electrician_10: 233559561
-      worker-electrician_11: -1627111043
-      worker-electrician_12: -1651211519
-      worker-electrician_13: 610572772
-      worker-electrician_14: -1892195633
-      worker-electrician_15: 810522701
-      worker-electrician_16: -27160286
-      worker-electrician_17: 1717696870
-      worker-electrician_18: -972556001
-      worker-electrician_19: 1612987725
-      worker-electrician_2: 666038456
-      worker-electrician_20: -1672443685
-      worker-electrician_21: 284397137
-      worker-electrician_22: -2117337293
-      worker-electrician_23: -2118728186
-      worker-electrician_3: -1600598457
-      worker-electrician_4: 1467123115
-      worker-electrician_5: -1326973420
-      worker-electrician_6: -612671704
-      worker-electrician_7: -1847569215
-      worker-electrician_8: 1784473891
-      worker-electrician_9: -1671392916
+      worker-electrician_10: -972556001
+      worker-electrician_11: 1612987725
+      worker-electrician_12: 666038456
+      worker-electrician_13: -1672443685
+      worker-electrician_14: 284397137
+      worker-electrician_15: -2117337293
+      worker-electrician_16: -2118728186
+      worker-electrician_17: -1600598457
+      worker-electrician_18: 1467123115
+      worker-electrician_19: -1326973420
+      worker-electrician_2: 233559561
+      worker-electrician_20: -612671704
+      worker-electrician_21: -1847569215
+      worker-electrician_22: 1784473891
+      worker-electrician_23: -1671392916
+      worker-electrician_3: -1627111043
+      worker-electrician_4: -1651211519
+      worker-electrician_5: 610572772
+      worker-electrician_6: -1892195633
+      worker-electrician_7: 810522701
+      worker-electrician_8: -27160286
+      worker-electrician_9: 1717696870
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

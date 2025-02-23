@@ -10,7 +10,6 @@ public class CameraManager : MonoBehaviour
     public GameObject[] RoomCameras;
     public GameObject[] MiniGameCams;
     public int currentCamIndex;
-    public int previousCamIndex;
 
     [Header("Camera Room Cam")]
     public GameObject MainRoomCam;
@@ -76,7 +75,6 @@ public class CameraManager : MonoBehaviour
     }
     public void ActivateCamera(int camIndex)
     {
-        previousCamIndex = currentCamIndex;
         currentCamIndex = camIndex;
         disableAllCameras();
         MainRoomCam.SetActive(false);
