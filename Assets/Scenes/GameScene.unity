@@ -346,8 +346,10 @@ GameObject:
   m_Component:
   - component: {fileID: 89280046}
   - component: {fileID: 89280047}
+  - component: {fileID: 89280048}
+  - component: {fileID: 89280049}
   m_Layer: 0
-  m_Name: DialRoom
+  m_Name: Dial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -362,7 +364,7 @@ Transform:
   m_GameObject: {fileID: 89280045}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.45, y: -13.84, z: 0}
+  m_LocalPosition: {x: -90.58311, y: 5.131527, z: 3.29326}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -370,7 +372,7 @@ Transform:
   - {fileID: 327376142}
   - {fileID: 965370466}
   - {fileID: 1667410057}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 877488111}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &89280047
 SpriteRenderer:
@@ -424,6 +426,58 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &89280048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 89280045}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19570e3204e78ce489c6566e8707d1b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 1937935933}
+  gameLocator: {fileID: 1305242865}
+  dialPrefab: {fileID: 3008189643470587343, guid: 6fb427d47f6951c4b92b2f7871a8e515, type: 3}
+  goalPrefab: {fileID: 5937295916383538816, guid: 340f4d9d24b65e640ac30ed52d6ab58a, type: 3}
+  dialtranny1: {fileID: 327376142}
+  dialtranny2: {fileID: 965370466}
+  dialtranny3: {fileID: 1667410057}
+  deskLayer:
+    serializedVersion: 2
+    m_Bits: 1
+--- !u!114 &89280049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 89280045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 60658149a037f6c4692b44a9e6934ebd, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Desk
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &91066403
 GameObject:
   m_ObjectHideFlags: 0
@@ -3502,6 +3556,7 @@ MonoBehaviour:
   - {fileID: 918051811}
   - {fileID: 640797077}
   - {fileID: 1977847454}
+  - {fileID: 1937935933}
   currentCamIndex: 0
   previousCamIndex: 0
   MainRoomCam: {fileID: 566320849}
@@ -3990,6 +4045,7 @@ Transform:
   - {fileID: 2017037690}
   - {fileID: 1823646728}
   - {fileID: 241586332}
+  - {fileID: 89280046}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &918051811
@@ -5768,6 +5824,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1114899332}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1305242865 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5818771338226887604, guid: 35f5f7892e08e2b4ca76d01a4f310240, type: 3}
+  m_PrefabInstance: {fileID: 1374040304}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1307366783
 GameObject:
   m_ObjectHideFlags: 0
@@ -6586,7 +6647,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5818771338226887604, guid: 35f5f7892e08e2b4ca76d01a4f310240, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6176047986430585393, guid: 35f5f7892e08e2b4ca76d01a4f310240, type: 3}
       propertyPath: m_LocalScale.x
@@ -6639,7 +6700,7 @@ PrefabInstance:
     - target: {fileID: 6848714592134850949, guid: 35f5f7892e08e2b4ca76d01a4f310240, type: 3}
       propertyPath: minigameManager
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 89280048}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10092,7 +10153,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!58 &4243304170640253192
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -10324,4 +10385,3 @@ SceneRoots:
   - {fileID: 1375422870}
   - {fileID: 1915555761}
   - {fileID: 877488111}
-  - {fileID: 89280046}
