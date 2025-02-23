@@ -10,8 +10,6 @@ public class GameManager : MonoBehaviour
 {
     public GameObject CameraManager;
     public bool inMinigame;
-    
-    
 
     public GameObject[] nonActiveGames;
 

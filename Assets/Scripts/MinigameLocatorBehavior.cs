@@ -9,8 +9,12 @@ public class MinigameLocatorBehavior : MonoBehaviour
     private CircleCollider2D trigger;
     private SpriteRenderer spriteRenderer;
 
+    private NotificationManager notificationManager;
+
+
     void Start()
     {
+        notificationManager = GameObject.Find("GameManager").GetComponent<NotificationManager>();
         trigger = GetComponents<CircleCollider2D>()[0];
         nonTrigger = GetComponents<CircleCollider2D>()[1];
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -23,7 +27,7 @@ public class MinigameLocatorBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void TurnOn()
@@ -32,6 +36,7 @@ public class MinigameLocatorBehavior : MonoBehaviour
         trigger.enabled = true;
         nonTrigger.enabled = true;
         spriteRenderer.enabled = true;
+        notificationManager.Notify(transform.parent.gameObject.name);
     }
 
     public void TurnOff()
@@ -40,6 +45,7 @@ public class MinigameLocatorBehavior : MonoBehaviour
         trigger.enabled = false;
         nonTrigger.enabled = false;
         spriteRenderer.enabled = false;
+        notificationManager.HideNotification(transform.parent.gameObject.name);
     }
 
     public void ChangeCamsToMinigame()
