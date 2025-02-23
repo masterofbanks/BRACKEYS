@@ -21,6 +21,8 @@ TagManager:
   - crankCam
   - RodWalls
   - Warning
+  - dialCam
+  - Notification
   layers:
   - Default
   - TransparentFX
