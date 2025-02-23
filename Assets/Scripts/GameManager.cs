@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         timeToDisplay = ((Minutes * 60) + Seconds);
+        nonActiveGames = GameObject.FindGameObjectsWithTag("Minigame");
     }
 
     // Update is called once per frame
@@ -38,7 +39,7 @@ public class GameManager : MonoBehaviour
         timerSeconds = Mathf.FloorToInt(timeToDisplay % 60);
         if (timeToDisplay <= 0)
         {
-            nonActiveGames = GameObject.FindGameObjectsWithTag("Minigame");
+ 
             if(nonActiveGames.Length == 0)
             {
                 Debug.Log("All Minigames activated; Lose??");
@@ -51,6 +52,7 @@ public class GameManager : MonoBehaviour
                 int randomIndex = rand.Next(0, nonActiveGames.Length);
                 nonActiveGames[randomIndex].GetComponent<MinigameLocatorBehavior>().TurnOn();
             }
+            nonActiveGames = GameObject.FindGameObjectsWithTag("Minigame");
             timeToDisplay = Seconds;
         }
         

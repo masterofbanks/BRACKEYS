@@ -9,6 +9,7 @@ public class SwitchboardGameManager : MiniGameManager
 
     private Dictionary<GameObject, GameObject> switchLightMapping = new Dictionary<GameObject, GameObject>();
 
+    
     private void Update()
     {
         if (checkWinState() == true)
@@ -17,20 +18,16 @@ public class SwitchboardGameManager : MiniGameManager
         }
 
     }
-    private void OnEnable()
+    protected override void OnEnable()
     {
-        cam.SetActive(true);
+        base.OnEnable();
         AssignRandomSwitchesToLights();
         setupBoard(true);
     }
 
-    private void OnDisable()
+    protected override void OnDisable()
     {
-        GameObject.FindWithTag("CameraManager").GetComponent<CameraManager>()
-            .ActivateCamera(GameObject.FindWithTag("CameraManager").GetComponent<CameraManager>().currentCamIndex);
-        GameObject.FindWithTag("Desk").GetComponent<DeskManager>()
-            .player.GetComponent<PlayerMovement>().enabled = true;
-        GameObject.FindWithTag("GameController").GetComponent<GameManager>().inMinigame = false;
+        base.OnDisable();
         setupBoard(false);
     }
 
