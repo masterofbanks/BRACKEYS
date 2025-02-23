@@ -15,8 +15,6 @@ public class GameManager : MonoBehaviour
 
     public GameObject[] nonActiveGames;
 
-    public float initMiniGameDelayInSec;
-
     public int Minutes;
     public int Seconds;
     public TextMeshProUGUI timerUI;
@@ -26,9 +24,14 @@ public class GameManager : MonoBehaviour
     private float timerSeconds;
     private float timeToDisplay;
 
+    public int secBetweenMinigames = 10;
+    private int nextMinigameCount;
+
     void Start()
     {
         timeToDisplay = ((Minutes * 60) + Seconds);
+        nextMinigameCount = secBetweenMinigames;
+        InvokeRepeating(nameof(TickMinigameCount), 0, 1f);
         nonActiveGames = GameObject.FindGameObjectsWithTag("Minigame");
     }
 
@@ -37,24 +40,6 @@ public class GameManager : MonoBehaviour
     {
         timerMinutes = Mathf.FloorToInt(timeToDisplay / 60);
         timerSeconds = Mathf.FloorToInt(timeToDisplay % 60);
-        if (timeToDisplay <= 0)
-        {
-            nonActiveGames = GameObject.FindGameObjectsWithTag("Minigame");
-            if (nonActiveGames.Length == 0)
-            {
-                Debug.Log("All Minigames activated; Lose??");
-                SceneManager.LoadScene(1);
-            }
-
-            else
-            {
-                System.Random rand = new System.Random();
-                int randomIndex = rand.Next(0, nonActiveGames.Length);
-                nonActiveGames[randomIndex].GetComponent<MinigameLocatorBehavior>().TurnOn();
-            }
-            
-            timeToDisplay = Seconds;
-        }
         
         timerUI.text = string.Format("{0:00}:{1:00}", timerMinutes, timerSeconds);
         timeToDisplay -= Time.deltaTime;
@@ -66,7 +51,33 @@ public class GameManager : MonoBehaviour
         //picking that minigame plays some sort of signal effect telling the player that that minigame is active
     }
 
-   
+    void TickMinigameCount()
+    {
+        nextMinigameCount++;
+
+        if (nextMinigameCount >= secBetweenMinigames) // When threshold is reached
+        {
+            ActivateRandomMinigame();
+            nextMinigameCount = 0; // Reset count
+        }
+    }
+
+    void ActivateRandomMinigame()
+    {
+        nonActiveGames = GameObject.FindGameObjectsWithTag("Minigame");
+
+        if (nonActiveGames.Length == 0)
+        {
+            Debug.Log("All Minigames activated; Lose??");
+            SceneManager.LoadScene(1);
+        }
+        else
+        {
+            int randomIndex = Random.Range(0, nonActiveGames.Length);
+            nonActiveGames[randomIndex].GetComponent<MinigameLocatorBehavior>().TurnOn();
+        }
+    }
+
 
     //create some sort of method that is the process for the succesfull completeion of a minigame
 

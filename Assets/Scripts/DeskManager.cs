@@ -74,11 +74,11 @@ public class DeskManager : MonoBehaviour
     }
     private void EnableCamSwitch()
     {
-        cam1.Enable(); cam2.Enable(); cam3.Enable(); cam4.Enable();
+        cam1.Enable(); cam2.Enable(); cam3.Enable(); cam4.Enable(); takeControl.Enable();
     }
     private void DisableCamSwitch()
     {
-        cam1.Disable(); cam2.Disable(); cam3.Disable(); cam4.Disable();
+        cam1.Disable(); cam2.Disable(); cam3.Disable(); cam4.Disable(); takeControl.Disable();
     }
     private void Cam1(InputAction.CallbackContext context)
     {
