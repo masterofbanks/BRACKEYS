@@ -13,6 +13,8 @@ public class RodGameManager : MiniGameManager
     public GameObject local_broken_rod;
     public GameObject local_horizontal_rod;
 
+    public GameObject RodLocator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +38,7 @@ public class RodGameManager : MiniGameManager
 
     private void OnDisable()
     {
+        RodLocator.GetComponent<MinigameLocatorBehavior>().TurnOff();
         GameObject.FindWithTag("CameraManager").GetComponent<CameraManager>().ActivateCamera(GameObject.FindWithTag("CameraManager").GetComponent<CameraManager>().currentCamIndex);
         GameObject.FindWithTag("Desk").GetComponent<DeskManager>().player.GetComponent<PlayerMovement>().enabled = true;
         GameObject.FindWithTag("GameController").GetComponent<GameManager>().inMinigame = false;
