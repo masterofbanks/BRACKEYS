@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     {
         timeToDisplay = ((Minutes * 60) + Seconds);
         nextMinigameCount = secBetweenMinigames;
-        InvokeRepeating(nameof(TickMinigameCount), 0, 1f);
+        InvokeRepeating(nameof(TickMinigameCount), 5, 1f);
         nonActiveGames = GameObject.FindGameObjectsWithTag("Minigame");
     }
 
