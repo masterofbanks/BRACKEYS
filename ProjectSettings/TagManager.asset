@@ -17,7 +17,7 @@ TagManager:
   - red
   - yellow
   - q
-  - crankCam
+  - MinigameOn
   layers:
   - Default
   - TransparentFX

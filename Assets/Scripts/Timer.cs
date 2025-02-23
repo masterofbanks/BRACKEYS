@@ -28,6 +28,7 @@ public class Timer : MonoBehaviour
         if (timeToDisplay <= 0)
         {
             //Move to end game screen
+            timeToDisplay = 10;
         }
         //string timerInt = timerSeconds.ToString("0");
         // Mathf.Floor(timer);

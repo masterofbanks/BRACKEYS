@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Minigame"))
+        if (collision.gameObject.CompareTag("MinigameOn"))
         {
             Debug.Log("Witih Minigame circle");
             miniGameObject = collision.gameObject;
@@ -65,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
         if(miniGameObject != null && !GameObject.FindWithTag("GameController").GetComponent<GameManager>().inMinigame)
         {
             miniGameObject.GetComponent<MinigameLocatorBehavior>().ChangeCamsToMinigame();
+
             GameObject.FindWithTag("GameController").GetComponent<GameManager>().inMinigame = true;
         }
     }
