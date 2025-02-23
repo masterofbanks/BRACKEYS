@@ -32,12 +32,14 @@ public class DeskManager : MonoBehaviour
 
     [Header("In Control Boolean")]
     public bool inControl = false;
+    public bool isMainCam = true;
 
     [Header("Desk Layer")]
     public LayerMask deskLayer;
 
     [Header("Player To Control")]
     public GameObject player;
+
     void Start()
     {
         cam1 = playerInputActions.Desk.Cam1;
@@ -49,7 +51,7 @@ public class DeskManager : MonoBehaviour
         GoToMain = playerInputActions.Desk.Main;
 
         EnableCamSwitch();
-        takeControl.Enable();
+        takeControl.Disable();
         click.Enable();
         GoToMain.Enable();
 
@@ -62,17 +64,21 @@ public class DeskManager : MonoBehaviour
         GoToMain.performed += MainCam;
 
     }
+    private void Update()
+    {
+        IntegrityCheck();
+    }
     private void Awake()
     {
         playerInputActions = new PIAs();
     }
     private void EnableCamSwitch()
     {
-        cam1.Enable(); cam2.Enable(); cam3.Enable(); cam4.Enable();
+        cam1.Enable(); cam2.Enable(); cam3.Enable(); cam4.Enable(); takeControl.Enable();
     }
     private void DisableCamSwitch()
     {
-        cam1.Disable(); cam2.Disable(); cam3.Disable(); cam4.Disable();
+        cam1.Disable(); cam2.Disable(); cam3.Disable(); cam4.Disable(); takeControl.Disable();
     }
     private void Cam1(InputAction.CallbackContext context)
     {
@@ -108,11 +114,12 @@ public class DeskManager : MonoBehaviour
             StartCoroutine(PlayAnimation(blueButton));
             SwitchCamTo(3);
         }
-        
     }
 
     private void MainCam(InputAction.CallbackContext context)
     {
+        isMainCam = true;
+        takeControl.Disable();
         if (!GameObject.FindWithTag("GameController").GetComponent<GameManager>().inMinigame && !cameraTransitionManager.isTransitioning)
         {
             StartCoroutine(PlayAnimation(q_button));
@@ -121,15 +128,16 @@ public class DeskManager : MonoBehaviour
     }
     private void SwitchCamTo(int cam)
     {
+        isMainCam = false;
         DisableCamSwitch();
         if(!cameraTransitionManager.isZoomedIn) cameraManager.GetComponent<CameraManager>().SwitchCamTo(cam);
         EnableCamSwitch();
+        takeControl.Enable();
     }
     private void TakeControl(InputAction.CallbackContext context)
     {
-        if (!GameObject.FindWithTag("CameraManager").GetComponent<CameraManager>().MainRoomCam.activeSelf)
+        if (!cameraManager.GetComponent<CameraManager>().MainRoomCam.activeSelf)
         {
-           
             StartCoroutine(PlayAnimation(blackButton));
             takeControl.Disable();
             if (!cameraTransitionManager.isTransitioning)
@@ -150,7 +158,6 @@ public class DeskManager : MonoBehaviour
             }
             takeControl.Enable();
         }
-        
     }
     private void Click(InputAction.CallbackContext context)
     {
@@ -204,6 +211,7 @@ public class DeskManager : MonoBehaviour
                 default: Debug.Log("no button"); break;
             }
         }
+        IntegrityCheck();
     }
     IEnumerator PlayAnimation(GameObject button)
     {
@@ -212,6 +220,13 @@ public class DeskManager : MonoBehaviour
             button.GetComponent<Animator>().SetBool("clicked", true);
             yield return new WaitForSeconds(0.20f);
             button.GetComponent<Animator>().SetBool("clicked", false);
+        }
+    }
+    void IntegrityCheck()
+    {
+        if(inControl && cameraManager.GetComponent<CameraManager>().MainRoomCam.activeSelf)
+        {
+            cameraManager.GetComponent<CameraManager>().ActivateCamera(cameraManager.GetComponent<CameraManager>().previousCamIndex);
         }
     }
 

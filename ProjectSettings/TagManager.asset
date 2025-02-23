@@ -18,6 +18,8 @@ TagManager:
   - yellow
   - q
   - MinigameOn
+  - crankCam
+  - dialCam
   layers:
   - Default
   - TransparentFX
