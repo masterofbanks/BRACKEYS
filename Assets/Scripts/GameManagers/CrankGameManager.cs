@@ -27,7 +27,7 @@ public class CrankGameManager : MiniGameManager
     {
         if (wheelInstance.GetComponent<WheelBehavior>().spins >= spinGoal*4)
         {
-            Debug.Log("end");
+            this.GetComponent<CrankGameManager>().enabled = false;
         }
     }
     private void Awake()
@@ -45,14 +45,21 @@ public class CrankGameManager : MiniGameManager
         //instantiate wheel at center of room
         wheelInstance = Instantiate(wheelPrefab, transform);
     }
+    private void OnDisable()
+    {
+        //locator remover .GetComponent<MinigameLocatorBehavior>().TurnOff();
+        GameObject.FindWithTag("CameraManager").GetComponent<CameraManager>().ActivateCamera(GameObject.FindWithTag("CameraManager").GetComponent<CameraManager>().currentCamIndex);
+        GameObject.FindWithTag("Desk").GetComponent<DeskManager>().player.GetComponent<PlayerMovement>().enabled = true;
+        GameObject.FindWithTag("GameController").GetComponent<GameManager>().inMinigame = false;
+        Destroy(wheelInstance);
+
+    }
     private void Click(InputAction.CallbackContext context)
     {
-        Debug.Log("bruh");
         Ray ray = this.cam.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, deskLayer);
         if (hit.collider != null)
         {
-            Debug.Log("hold");
             wheelInstance.GetComponent<WheelBehavior>().StartHold();
         }
     }
